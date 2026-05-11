@@ -19,16 +19,12 @@ Zipply Paste is a lightweight, self-hosted, multi-user Pastebin platform built w
 - PHP 8.0 or higher
 - SQLite (default) or MySQL support
 - Apache with `mod_rewrite` enabled (for clean URLs)
-- Composer
 
 ### 2. Setup
 1. Clone the repository or download the source code.
 2. Navigate to the project directory.
-3. Install dependencies via Composer:
-   ```bash
-   composer install
-   ```
-4. Point your web server (Laragon, XAMPP, WAMP, etc.) to the `public/` directory.
+3. Point your web server (Laragon, XAMPP, WAMP, etc.) to the `public/` directory.
+   - *Note: Dependencies are pre-bundled, so no Composer is needed.*
 
 ### 3. Web Installation
 Once the server is running, navigate to the `/install` route in your browser (e.g., `http://localhost/zipply-paste/install`).

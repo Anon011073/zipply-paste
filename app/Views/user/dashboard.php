@@ -5,7 +5,7 @@ ob_start();
 <div class="max-w-6xl mx-auto">
     <div class="flex items-center justify-between mb-8">
         <div>
-            <h1 class="text-3xl font-bold">Hello, <?php echo $user['full_name'] ?: $user['username']; ?>!</h1>
+            <h1 class="text-3xl font-bold">Hello, <?php echo \App\Helpers\View::e($user['full_name'] ?: $user['username']); ?>!</h1>
             <p class="text-zinc-500">Welcome to your dashboard.</p>
         </div>
         <a href="/paste/new" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-bold transition-all flex items-center gap-2">

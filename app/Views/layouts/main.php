@@ -35,7 +35,7 @@
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <a href="<?php echo $base; ?>/dashboard" class="text-sm font-medium hover:text-indigo-400 transition-colors flex items-center gap-2">
                         <i data-lucide="user" class="w-4 h-4"></i>
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo \App\Helpers\View::e($_SESSION['username']); ?>
                     </a>
                     <?php if ($_SESSION['role'] === 'admin'): ?>
                         <a href="<?php echo $base; ?>/admin" class="text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors">Admin</a>

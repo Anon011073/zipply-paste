@@ -12,8 +12,8 @@ ob_start();
                         <i data-lucide="user" class="w-16 h-16 text-zinc-600"></i>
                     </div>
                     <div class="mb-2">
-                        <h1 class="text-3xl font-bold"><?php echo $user['full_name'] ?: $user['username']; ?></h1>
-                        <p class="text-zinc-500">@<?php echo $user['username']; ?></p>
+                        <h1 class="text-3xl font-bold"><?php echo \App\Helpers\View::e($user['full_name'] ?: $user['username']); ?></h1>
+                        <p class="text-zinc-500">@<?php echo \App\Helpers\View::e($user['username']); ?></p>
                     </div>
                 </div>
                 <div class="flex gap-2 mb-2">
@@ -60,7 +60,7 @@ ob_start();
                         About
                     </h2>
                     <div class="bg-zinc-950 border border-zinc-800 p-6 rounded-2xl text-sm text-zinc-400 leading-relaxed">
-                        <?php echo $user['bio'] ?: 'No bio provided.'; ?>
+                        <?php echo \App\Helpers\View::e($user['bio'] ?: 'No bio provided.'); ?>
                     </div>
                 </div>
             </div>

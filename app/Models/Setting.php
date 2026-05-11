@@ -10,7 +10,7 @@ class Setting extends Model
 
     public function get($key, $default = null)
     {
-        $stmt = $this->db->prepare("SELECT value FROM {$this->table} WHERE key = ?");
+        $stmt = $this->db->prepare("SELECT value FROM {$this->table} WHERE `key` = ?");
         $stmt->execute([$key]);
         $val = $stmt->fetchColumn();
         return $val !== false ? $val : $default;
@@ -18,7 +18,12 @@ class Setting extends Model
 
     public function set($key, $value)
     {
-        $stmt = $this->db->prepare("INSERT OR REPLACE INTO {$this->table} (key, value) VALUES (?, ?)");
+        $driver = $this->db->getAttribute(\PDO::ATTR_DRIVER_NAME);
+        if ($driver === 'sqlite') {
+            $stmt = $this->db->prepare("INSERT OR REPLACE INTO {$this->table} (`key`, value) VALUES (?, ?)");
+        } else {
+            $stmt = $this->db->prepare("INSERT INTO {$this->table} (`key`, value) VALUES (?, ?) ON DUPLICATE KEY UPDATE value = VALUES(value)");
+        }
         return $stmt->execute([$key, $value]);
     }
 

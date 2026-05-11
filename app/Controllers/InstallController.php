@@ -28,6 +28,14 @@ class InstallController extends Controller
 
         try {
             if ($driver === 'sqlite') {
+                $dbDir = dirname($dbPath);
+                if (!is_dir($dbDir)) {
+                    mkdir($dbDir, 0755, true);
+                }
+                if (!is_writable($dbDir)) {
+                    $this->json(['success' => false, 'message' => "The directory '$dbDir' is not writable. Please check permissions."]);
+                    return;
+                }
                 $db = new PDO("sqlite:" . $dbPath);
             } else {
                 $host = $_POST['db_host'] ?? 'localhost';
@@ -52,11 +60,11 @@ class InstallController extends Controller
             $db->exec("CREATE TABLE IF NOT EXISTS users (
                 id $pk,
                 username VARCHAR(255) UNIQUE NOT NULL,
-                email TEXT UNIQUE NOT NULL,
-                password TEXT NOT NULL,
-                full_name TEXT,
-                role TEXT DEFAULT 'member',
-                avatar TEXT,
+                email VARCHAR(255) UNIQUE NOT NULL,
+                password VARCHAR(255) NOT NULL,
+                full_name VARCHAR(255),
+                role VARCHAR(50) DEFAULT 'member',
+                avatar VARCHAR(255),
                 bio TEXT,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             )");

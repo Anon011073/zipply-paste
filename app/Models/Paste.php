@@ -38,7 +38,9 @@ class Paste extends Model
 
     public function getRecent($limit = 10)
     {
-        $stmt = $this->db->prepare("SELECT slug, title, language, created_at FROM {$this->table} WHERE visibility = 'public' AND (expires_at IS NULL OR expires_at > DATETIME('now')) ORDER BY created_at DESC LIMIT ?");
+        $driver = $this->db->getAttribute(\PDO::ATTR_DRIVER_NAME);
+        $now = ($driver === 'sqlite') ? "DATETIME('now')" : "NOW()";
+        $stmt = $this->db->prepare("SELECT slug, title, language, created_at FROM {$this->table} WHERE visibility = 'public' AND (expires_at IS NULL OR expires_at > $now) ORDER BY created_at DESC LIMIT ?");
         $stmt->execute([$limit]);
         return $stmt->fetchAll();
     }
@@ -57,7 +59,9 @@ class Paste extends Model
 
     public function markAsBurned($id)
     {
-        $stmt = $this->db->prepare("UPDATE {$this->table} SET expires_at = DATETIME('now') WHERE id = ?");
+        $driver = $this->db->getAttribute(\PDO::ATTR_DRIVER_NAME);
+        $now = ($driver === 'sqlite') ? "DATETIME('now')" : "NOW()";
+        $stmt = $this->db->prepare("UPDATE {$this->table} SET expires_at = $now WHERE id = ?");
         return $stmt->execute([$id]);
     }
 }

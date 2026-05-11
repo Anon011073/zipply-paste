@@ -3,7 +3,8 @@ ob_start();
 $isMarkdown = ($paste['language'] === 'markdown');
 ?>
 
-<div class="max-w-6xl mx-auto">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <div class="lg:col-span-3">
     <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
         <div>
             <h1 class="text-3xl font-bold mb-2"><?php echo htmlspecialchars($paste['title']); ?></h1>
@@ -42,6 +43,21 @@ $isMarkdown = ($paste['language'] === 'markdown');
         <?php else: ?>
             <div id="editor-container" class="h-[600px]"></div>
         <?php endif; ?>
+    </div>
+    </div>
+
+    <div class="space-y-6">
+        <h2 class="text-sm font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-2">
+            <i data-lucide="clock" class="w-4 h-4"></i> Recent Pastes
+        </h2>
+        <div class="space-y-3">
+            <?php foreach($recent as $r): ?>
+                <a href="<?php echo $base; ?>/v/<?php echo $r['slug']; ?>" class="block bg-zinc-900 border border-zinc-800 hover:border-indigo-500/50 p-4 rounded-2xl transition-all group">
+                    <h3 class="text-sm font-bold truncate group-hover:text-indigo-400 transition-colors"><?php echo htmlspecialchars($r['title']); ?></h3>
+                    <p class="text-[10px] text-zinc-500 mt-1 uppercase font-bold tracking-tighter"><?php echo $r['language']; ?> • <?php echo date('M j', strtotime($r['created_at'])); ?></p>
+                </a>
+            <?php endforeach; ?>
+        </div>
     </div>
 </div>
 

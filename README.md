@@ -12,6 +12,7 @@ Zipply Paste is a lightweight, self-hosted, multi-user Pastebin platform built w
 - **Burn After Read:** Self-destructing pastes for extra privacy.
 - **Admin Panel:** Powerful site moderation and settings management.
 - **Lightweight:** Minimal dependencies and easy to deploy.
+- **Zero Configuration:** Pre-bundled dependencies. No Composer required!
 
 ## 🛠️ Installation
 
@@ -23,18 +24,18 @@ Zipply Paste is a lightweight, self-hosted, multi-user Pastebin platform built w
 ### 2. Setup
 1. Clone the repository or download the source code.
 2. Navigate to the project directory.
-3. Point your web server (Laragon, XAMPP, WAMP, etc.) to the `public/` directory.
-   - *Note: Dependencies are pre-bundled, so no Composer is needed.*
+3. Point your web server (Laragon, XAMPP, WAMP, or Apache) to the root directory of the project.
+   - *Example: If you extract to `D:\laragon\www\zipply-paste`, your URL will be `http://localhost/zipply-paste/`.*
 
 ### 3. Web Installation
-Once the server is running, navigate to the `/install` route in your browser (e.g., `http://localhost/zipply-paste/install`).
+Navigate to the `/install` route in your browser (e.g., `http://localhost/zipply-paste/install`).
 Follow the on-screen instructions to set up your admin account and initialize the database.
 
 ## 📁 Project Structure
 - `app/`: Core logic (Controllers, Models, Views, Helpers)
 - `config/`: Database and site configuration
-- `public/`: Publicly accessible entry point and assets
 - `storage/`: Database files and logs
+- `index.php`: Main entry point
 
 ## 📄 License
 MIT License. Created with ❤️ for the self-hosted community.

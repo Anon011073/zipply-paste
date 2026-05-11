@@ -9,13 +9,31 @@
         if ($base === '/') $base = '';
     ?>
     <script src="<?php echo $base; ?>/js/tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#09090b',
+                            card: '#18181b',
+                            border: '#27272a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <script src="<?php echo $base; ?>/js/lucide.min.js"></script>
     <style>
         body { font-family: 'Inter', sans-serif; }
+        .dark .light-only { display: none; }
+        html:not(.dark) .dark-only { display: none; }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-100 dark:bg-zinc-950 dark:text-zinc-100 light:bg-zinc-50 light:text-zinc-900 min-h-screen flex flex-col transition-colors duration-300">
-    <nav class="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-md sticky top-0 z-50 dark:bg-zinc-900/50 dark:border-zinc-800 light:bg-white/80 light:border-zinc-200">
+<body class="bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 min-h-screen flex flex-col transition-colors duration-300">
+    <nav class="border-b border-zinc-200 bg-white/80 backdrop-blur-md sticky top-0 z-50 dark:bg-zinc-900/50 dark:border-zinc-800">
         <div class="container mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-8">
                 <a href="<?php echo $base; ?>/" class="flex items-center gap-2 font-bold text-xl tracking-tight">
@@ -34,11 +52,14 @@
                 </button>
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <a href="<?php echo $base; ?>/dashboard" class="text-sm font-medium hover:text-indigo-400 transition-colors flex items-center gap-2">
-                        <i data-lucide="user" class="w-4 h-4"></i>
-                        <?php echo \App\Helpers\View::e($_SESSION['username']); ?>
+                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                        Dashboard
                     </a>
                     <?php if ($_SESSION['role'] === 'admin'): ?>
-                        <a href="<?php echo $base; ?>/admin" class="text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors">Admin</a>
+                        <a href="<?php echo $base; ?>/admin" class="text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-2">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                            Admin
+                        </a>
                     <?php endif; ?>
                     <a href="<?php echo $base; ?>/logout" class="text-sm font-medium text-zinc-500 hover:text-red-400 transition-colors">Logout</a>
                 <?php else: ?>
@@ -70,13 +91,11 @@
         function setTheme(isDark) {
             if (isDark) {
                 document.documentElement.classList.add('dark');
-                document.documentElement.classList.remove('light');
                 darkIcon.classList.add('hidden');
                 lightIcon.classList.remove('hidden');
                 localStorage.setItem('theme', 'dark');
             } else {
                 document.documentElement.classList.remove('dark');
-                document.documentElement.classList.add('light');
                 darkIcon.classList.remove('hidden');
                 lightIcon.classList.add('hidden');
                 localStorage.setItem('theme', 'light');

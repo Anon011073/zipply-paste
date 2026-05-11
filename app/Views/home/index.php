@@ -34,7 +34,7 @@ ob_start();
         </div>
     </div>
 
-    <a href="/paste/new" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl shadow-indigo-500/30">
+    <a href="<?php echo $base; ?>/paste/new" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl shadow-indigo-500/30">
         <i data-lucide="plus-circle"></i>
         Create Your First Paste
     </a>

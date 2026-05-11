@@ -104,8 +104,8 @@ ob_start();
                 Profile Settings
             </h2>
             <div class="space-y-4">
-                <a href="/profile/edit" class="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white py-2 rounded-lg text-sm font-medium transition-colors">
-                    Edit Profile
+                <a href="<?php echo $base; ?>/u/<?php echo $user['username']; ?>" class="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white py-2 rounded-lg text-sm font-medium transition-colors">
+                    View Public Profile
                 </a>
                 <button class="block w-full text-center bg-red-600/10 hover:bg-red-600/20 text-red-500 py-2 rounded-lg text-sm font-medium transition-colors border border-red-500/20">
                     Delete My Account

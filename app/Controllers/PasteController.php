@@ -16,7 +16,11 @@ class PasteController extends Controller
 
     public function create()
     {
-        $this->view('paste/create', ['title' => 'Create New Paste']);
+        $recent = $this->pasteModel->getRecent(10);
+        $this->view('paste/create', [
+            'title' => 'Create New Paste',
+            'recent' => $recent
+        ]);
     }
 
     public function store()
@@ -67,6 +71,8 @@ class PasteController extends Controller
             die("Paste not found.");
         }
 
+        $recent = $this->pasteModel->getRecent(10);
+
         // Check expiration
         if ($paste['expires_at'] && strtotime($paste['expires_at']) < time()) {
             die("Paste has expired.");
@@ -87,7 +93,8 @@ class PasteController extends Controller
 
         $this->view('paste/view', [
             'title' => $paste['title'],
-            'paste' => $paste
+            'paste' => $paste,
+            'recent' => $recent
         ]);
     }
 
@@ -123,9 +130,11 @@ class PasteController extends Controller
         $paste = $this->pasteModel->findBySlug($slug);
         if (!$paste) die("Not found");
 
+        $recent = $this->pasteModel->getRecent(10);
         $this->view('paste/create', [
             'title' => 'Clone Paste: ' . $paste['title'],
-            'clone' => $paste
+            'clone' => $paste,
+            'recent' => $recent
         ]);
     }
 

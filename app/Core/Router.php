@@ -11,8 +11,9 @@ class Router
     {
         if (self::$basePath === null) {
             $scriptName = $_SERVER['SCRIPT_NAME'];
-            self::$basePath = str_replace('/index.php', '', $scriptName);
-            if (self::$basePath === '/') self::$basePath = '';
+            // Normalize path for Windows/Apache
+            $base = str_replace('\\', '/', dirname($scriptName));
+            self::$basePath = ($base === '/') ? '' : $base;
         }
         return self::$basePath;
     }

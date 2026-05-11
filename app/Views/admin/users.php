@@ -31,8 +31,8 @@ ob_start();
                                         <?php echo strtoupper(substr($u['username'], 0, 1)); ?>
                                     </div>
                                     <div>
-                                        <div class="font-medium text-zinc-200"><?php echo htmlspecialchars($u['username']); ?></div>
-                                        <div class="text-[10px] text-zinc-500"><?php echo htmlspecialchars($u['full_name']); ?></div>
+                                        <div class="font-medium text-zinc-200"><?php echo \App\Helpers\View::e($u['username']); ?></div>
+                                        <div class="text-[10px] text-zinc-500"><?php echo \App\Helpers\View::e($u['full_name']); ?></div>
                                     </div>
                                 </div>
                             </td>
@@ -45,9 +45,9 @@ ob_start();
                             <td class="px-6 py-4 text-zinc-500"><?php echo date('M j, Y', strtotime($u['created_at'])); ?></td>
                             <td class="px-6 py-4">
                                 <div class="flex gap-2">
-                                    <button class="p-2 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-colors" title="Edit">
-                                        <i data-lucide="edit-3" class="w-4 h-4"></i>
-                                    </button>
+                                    <a href="<?php echo $base; ?>/u/<?php echo $u['username']; ?>" class="p-2 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-colors" title="View Profile">
+                                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                                    </a>
                                     <?php if ($u['id'] != $_SESSION['user_id']): ?>
                                         <button class="p-2 hover:bg-red-500/10 rounded-lg text-zinc-500 hover:text-red-500 transition-colors" title="Delete">
                                             <i data-lucide="trash-2" class="w-4 h-4"></i>

@@ -2,14 +2,15 @@
 ob_start();
 ?>
 
-<div class="max-w-6xl mx-auto">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <div class="lg:col-span-3">
     <form action="<?php echo $base; ?>/paste/new" method="POST" class="space-y-6">
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
         <div class="flex flex-col md:flex-row gap-4 items-end">
             <div class="flex-grow w-full">
                 <label class="block text-sm font-medium text-zinc-500 mb-2">Paste Title</label>
-                <input type="text" name="title" value="<?php echo isset($clone) ? htmlspecialchars($clone['title']) . ' (Clone)' : ''; ?>" placeholder="Untitled Paste" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all text-lg font-bold">
+                <input type="text" name="title" autocomplete="off" value="<?php echo isset($clone) ? htmlspecialchars($clone['title']) . ' (Clone)' : ''; ?>" placeholder="Untitled Paste" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all text-lg font-bold">
             </div>
             <div class="flex gap-2">
                 <select name="language" class="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all text-sm font-medium">
@@ -22,8 +23,8 @@ ob_start();
             </div>
         </div>
 
-        <div class="relative group">
-            <div id="editor-container" class="h-[500px] rounded-2xl border border-zinc-800 overflow-hidden bg-zinc-900 shadow-2xl group-hover:border-zinc-700 transition-all"></div>
+        <div class="relative group z-0">
+            <div id="editor-container" style="height: 500px;" class="rounded-2xl border border-zinc-800 overflow-hidden bg-zinc-900 shadow-2xl group-hover:border-zinc-700 transition-all"></div>
             <textarea name="content" id="content-textarea" class="hidden"><?php echo isset($clone) ? htmlspecialchars($clone['content']) : ''; ?></textarea>
         </div>
 
@@ -59,6 +60,21 @@ ob_start();
             </button>
         </div>
     </form>
+    </div>
+
+    <div class="space-y-6">
+        <h2 class="text-sm font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-2">
+            <i data-lucide="clock" class="w-4 h-4"></i> Recent Pastes
+        </h2>
+        <div class="space-y-3">
+            <?php foreach($recent as $r): ?>
+                <a href="<?php echo $base; ?>/v/<?php echo $r['slug']; ?>" class="block bg-zinc-900 border border-zinc-800 hover:border-indigo-500/50 p-4 rounded-2xl transition-all group">
+                    <h3 class="text-sm font-bold truncate group-hover:text-indigo-400 transition-colors"><?php echo htmlspecialchars($r['title']); ?></h3>
+                    <p class="text-[10px] text-zinc-500 mt-1 uppercase font-bold tracking-tighter"><?php echo $r['language']; ?> • <?php echo date('M j', strtotime($r['created_at'])); ?></p>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>

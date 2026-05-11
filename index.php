@@ -1,10 +1,10 @@
 <?php
 
-if (!file_exists(__DIR__ . '/../vendor/autoload.php')) {
-    die("<h1>Zipply Paste: Dependencies Missing</h1><p>Please run <code>composer install</code> in the root directory to set up the platform.</p>");
+if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
+    die("<h1>Zipply Paste: Dependencies Missing</h1><p>Please ensure the <code>vendor/</code> directory is present in the root directory.</p>");
 }
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 // Session management
 session_start();

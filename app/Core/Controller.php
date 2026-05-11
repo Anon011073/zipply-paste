@@ -6,6 +6,10 @@ abstract class Controller
 {
     protected function view($name, $data = [])
     {
+        $base = str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']);
+        if ($base === '/') $base = '';
+        $data['base'] = $base;
+
         extract($data);
         $viewFile = __DIR__ . "/../Views/{$name}.php";
 
@@ -18,7 +22,11 @@ abstract class Controller
 
     protected function redirect($url)
     {
-        header("Location: {$url}");
+        $target = $url;
+        if (strpos($url, 'http') !== 0) {
+            $target = \App\Core\Router::url($url);
+        }
+        header("Location: {$target}");
         exit;
     }
 

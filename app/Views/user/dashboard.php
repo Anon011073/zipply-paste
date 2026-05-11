@@ -16,19 +16,19 @@ ob_start();
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
             <p class="text-zinc-500 text-sm mb-1">Total Pastes</p>
-            <p class="text-2xl font-bold">0</p>
+            <p class="text-2xl font-bold"><?php echo $stats['total']; ?></p>
         </div>
         <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
             <p class="text-zinc-500 text-sm mb-1">Total Views</p>
-            <p class="text-2xl font-bold">0</p>
+            <p class="text-2xl font-bold"><?php echo $stats['views']; ?></p>
         </div>
         <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
             <p class="text-zinc-500 text-sm mb-1">Public Pastes</p>
-            <p class="text-2xl font-bold">0</p>
+            <p class="text-2xl font-bold"><?php echo $stats['public']; ?></p>
         </div>
         <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
             <p class="text-zinc-500 text-sm mb-1">Private Pastes</p>
-            <p class="text-2xl font-bold">0</p>
+            <p class="text-2xl font-bold"><?php echo $stats['private']; ?></p>
         </div>
     </div>
 
@@ -37,9 +37,34 @@ ob_start();
             <h2 class="font-bold">Recent Pastes</h2>
             <a href="/user/pastes" class="text-sm text-indigo-400 hover:underline">View All</a>
         </div>
-        <div class="p-12 text-center text-zinc-500">
-            <i data-lucide="file-text" class="w-12 h-12 mx-auto mb-4 opacity-20"></i>
-            <p>You haven't created any pastes yet.</p>
+        <div class="overflow-x-auto">
+            <?php if (empty($recentPastes)): ?>
+                <div class="p-12 text-center text-zinc-500">
+                    <i data-lucide="file-text" class="w-12 h-12 mx-auto mb-4 opacity-20"></i>
+                    <p>You haven't created any pastes yet.</p>
+                </div>
+            <?php else: ?>
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr class="bg-zinc-950/50 text-zinc-500 uppercase text-[10px] font-bold tracking-widest">
+                            <th class="px-6 py-4">Title</th>
+                            <th class="px-6 py-4">Visibility</th>
+                            <th class="px-6 py-4">Views</th>
+                            <th class="px-6 py-4">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-zinc-800">
+                        <?php foreach($recentPastes as $p): ?>
+                            <tr class="hover:bg-zinc-800/30 transition-colors">
+                                <td class="px-6 py-4 font-medium italic"><a href="<?php echo $base; ?>/v/<?php echo $p['slug']; ?>" class="hover:text-indigo-400"><?php echo htmlspecialchars($p['title']); ?></a></td>
+                                <td class="px-6 py-4"><span class="px-2 py-0.5 bg-zinc-800 rounded text-[10px] uppercase font-bold text-zinc-400"><?php echo $p['visibility']; ?></span></td>
+                                <td class="px-6 py-4 text-zinc-500"><?php echo $p['views']; ?></td>
+                                <td class="px-6 py-4 text-zinc-500"><?php echo date('M j, Y', strtotime($p['created_at'])); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -51,11 +76,23 @@ ob_start();
             </h2>
             <p class="text-sm text-zinc-500 mb-6">API keys allow you to create pastes programmatically.</p>
             <div class="space-y-4">
-                <div class="flex items-center gap-2">
-                    <input type="text" placeholder="Key Name (e.g. My Script)" class="flex-grow bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-500">
-                    <button class="bg-emerald-600/10 text-emerald-500 border border-emerald-500/20 px-4 py-2 rounded-lg text-sm font-bold hover:bg-emerald-600/20 transition-all">
+                <form action="<?php echo $base; ?>/api/keys" method="POST" class="flex items-center gap-2">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                    <input type="text" name="key_name" required placeholder="Key Name (e.g. My Script)" class="flex-grow bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-500">
+                    <button type="submit" class="bg-emerald-600/10 text-emerald-500 border border-emerald-500/20 px-4 py-2 rounded-lg text-sm font-bold hover:bg-emerald-600/20 transition-all">
                         Create Key
                     </button>
+                </form>
+                <div class="space-y-2">
+                    <?php foreach($apiKeys as $key): ?>
+                        <div class="flex items-center justify-between bg-zinc-950 p-3 rounded-xl border border-zinc-800">
+                            <div>
+                                <p class="text-xs font-bold"><?php echo htmlspecialchars($key['key_name']); ?></p>
+                                <code class="text-[10px] text-zinc-500"><?php echo $key['api_key']; ?></code>
+                            </div>
+                            <button class="text-red-500 hover:text-red-400 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
                 <p class="text-[10px] text-zinc-600 italic">You can create up to 5 API keys.</p>
             </div>

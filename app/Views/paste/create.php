@@ -3,7 +3,7 @@ ob_start();
 ?>
 
 <div class="max-w-6xl mx-auto">
-    <form action="/paste/new" method="POST" class="space-y-6">
+    <form action="<?php echo $base; ?>/paste/new" method="POST" class="space-y-6">
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
         <div class="flex flex-col md:flex-row gap-4 items-end">

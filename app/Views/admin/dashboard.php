@@ -6,8 +6,8 @@ ob_start();
     <div class="flex items-center justify-between mb-8">
         <h1 class="text-3xl font-bold">Admin Dashboard</h1>
         <div class="flex gap-4">
-            <a href="/admin/users" class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Users</a>
-            <a href="/admin/settings" class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Settings</a>
+            <a href="<?php echo $base; ?>/admin/users" class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Users</a>
+            <a href="<?php echo $base; ?>/admin/settings" class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Settings</a>
         </div>
     </div>
 
@@ -56,7 +56,7 @@ ob_start();
                             <td class="px-6 py-4 text-zinc-500"><?php echo $p['language']; ?></td>
                             <td class="px-6 py-4 text-zinc-500"><?php echo date('M j, Y', strtotime($p['created_at'])); ?></td>
                             <td class="px-6 py-4">
-                                <a href="/v/<?php echo $p['slug']; ?>" class="text-indigo-400 hover:underline">View</a>
+                                <a href="<?php echo $base; ?>/v/<?php echo $p['slug']; ?>" class="text-indigo-400 hover:underline">View</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -15,14 +15,17 @@ ob_start();
             </div>
         <?php endif; ?>
 
-        <form action="/login" method="POST" class="space-y-4">
+        <form action="<?php echo $base; ?>/login" method="POST" class="space-y-4">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <div>
                 <label class="block text-sm font-medium text-zinc-400 mb-1">Username</label>
                 <input type="text" name="username" required class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
             </div>
             <div>
-                <label class="block text-sm font-medium text-zinc-400 mb-1">Password</label>
+                <div class="flex items-center justify-between mb-1">
+                    <label class="block text-sm font-medium text-zinc-400">Password</label>
+                    <a href="<?php echo $base; ?>/forgot-password" class="text-xs text-indigo-400 hover:underline">Forgot password?</a>
+                </div>
                 <input type="password" name="password" required class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
             </div>
 
@@ -32,7 +35,7 @@ ob_start();
         </form>
 
         <p class="text-center mt-6 text-sm text-zinc-500">
-            Don't have an account? <a href="/register" class="text-indigo-400 hover:underline">Sign up</a>
+            Don't have an account? <a href="<?php echo $base; ?>/register" class="text-indigo-400 hover:underline">Sign up</a>
         </p>
     </div>
 </div>

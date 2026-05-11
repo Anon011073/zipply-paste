@@ -1,5 +1,9 @@
 <?php
 
+if (!file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    die("<h1>Zipply Paste: Dependencies Missing</h1><p>Please run <code>composer install</code> in the root directory to set up the platform.</p>");
+}
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Session management
@@ -14,8 +18,11 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-i
 // Basic CSRF Protection
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['csrf_token']) || !\App\Helpers\Security::verifyCsrf($_POST['csrf_token'])) {
-        // Only allow bypass for install during development if needed, but better to keep it secure
-        if ($_SERVER['REQUEST_URI'] !== '/install') {
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $base = \App\Core\Router::getBase();
+        $path = ($base !== '' && strpos($uri, $base) === 0) ? substr($uri, strlen($base)) : $uri;
+
+        if ($path !== '/install') {
              die("CSRF token validation failed.");
         }
     }
@@ -35,9 +42,12 @@ $router->add('POST', '/login', [\App\Controllers\AuthController::class, 'postLog
 $router->add('GET', '/register', [\App\Controllers\AuthController::class, 'register']);
 $router->add('POST', '/register', [\App\Controllers\AuthController::class, 'postRegister']);
 $router->add('GET', '/logout', [\App\Controllers\AuthController::class, 'logout']);
+$router->add('GET', '/forgot-password', [\App\Controllers\AuthController::class, 'forgotPassword']);
+$router->add('POST', '/forgot-password', [\App\Controllers\AuthController::class, 'postForgotPassword']);
 
 // User routes
 $router->add('GET', '/dashboard', [\App\Controllers\DashboardController::class, 'index']);
+$router->add('POST', '/api/keys', [\App\Controllers\DashboardController::class, 'createApiKey']);
 
 // Paste routes
 $router->add('GET', '/paste/new', [\App\Controllers\PasteController::class, 'create']);

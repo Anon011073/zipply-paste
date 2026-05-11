@@ -15,7 +15,7 @@ ob_start();
             </div>
         <?php endif; ?>
 
-        <form action="/register" method="POST" class="space-y-4">
+        <form action="<?php echo $base; ?>/register" method="POST" class="space-y-4">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <div>
                 <label class="block text-sm font-medium text-zinc-400 mb-1">Full Name</label>
@@ -40,7 +40,7 @@ ob_start();
         </form>
 
         <p class="text-center mt-6 text-sm text-zinc-500">
-            Already have an account? <a href="/login" class="text-indigo-400 hover:underline">Login</a>
+            Already have an account? <a href="<?php echo $base; ?>/login" class="text-indigo-400 hover:underline">Login</a>
         </p>
     </div>
 </div>

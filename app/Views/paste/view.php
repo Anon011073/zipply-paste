@@ -15,16 +15,16 @@ $isMarkdown = ($paste['language'] === 'markdown');
             </div>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-            <a href="/raw/<?php echo $paste['slug']; ?>" target="_blank" class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
+            <a href="<?php echo $base; ?>/raw/<?php echo $paste['slug']; ?>" target="_blank" class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
                 <i data-lucide="file-text" class="w-4 h-4"></i> RAW
             </a>
             <button onclick="copyToClipboard()" class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
                 <i data-lucide="copy" class="w-4 h-4"></i> Copy
             </button>
-            <a href="/download/<?php echo $paste['slug']; ?>" class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
+            <a href="<?php echo $base; ?>/download/<?php echo $paste['slug']; ?>" class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
                 <i data-lucide="download" class="w-4 h-4"></i> Download
             </a>
-            <a href="/clone/<?php echo $paste['slug']; ?>" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
+            <a href="<?php echo $base; ?>/clone/<?php echo $paste['slug']; ?>" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
                 <i data-lucide="copy-plus" class="w-4 h-4"></i> Clone
             </a>
         </div>
@@ -35,6 +35,7 @@ $isMarkdown = ($paste['language'] === 'markdown');
             <div class="p-8 prose prose-invert max-w-none">
                 <?php
                 $parsedown = new Parsedown();
+                $parsedown->setSafeMode(true);
                 echo $parsedown->text($paste['content']);
                 ?>
             </div>

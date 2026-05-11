@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title ?? 'Zipply Paste'; ?></title>
-    <script src="/js/tailwind.js"></script>
-    <script src="/js/lucide.min.js"></script>
+    <?php
+        $base = str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']);
+        if ($base === '/') $base = '';
+    ?>
+    <script src="<?php echo $base; ?>/js/tailwind.js"></script>
+    <script src="<?php echo $base; ?>/js/lucide.min.js"></script>
     <style>
         body { font-family: 'Inter', sans-serif; }
     </style>
@@ -14,13 +18,13 @@
     <nav class="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-md sticky top-0 z-50 dark:bg-zinc-900/50 dark:border-zinc-800 light:bg-white/80 light:border-zinc-200">
         <div class="container mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-8">
-                <a href="/" class="flex items-center gap-2 font-bold text-xl tracking-tight">
+                <a href="<?php echo $base; ?>/" class="flex items-center gap-2 font-bold text-xl tracking-tight">
                     <i data-lucide="layers" class="text-indigo-500 w-6 h-6"></i>
                     <span>Zipply<span class="text-indigo-500">Paste</span></span>
                 </a>
                 <div class="hidden md:flex items-center gap-6">
-                    <a href="/search" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Discover</a>
-                    <a href="/paste/new" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Create</a>
+                    <a href="<?php echo $base; ?>/search" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Discover</a>
+                    <a href="<?php echo $base; ?>/paste/new" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Create</a>
                 </div>
             </div>
             <div class="flex items-center gap-4">
@@ -29,17 +33,17 @@
                     <i data-lucide="sun" id="theme-icon-light" class="w-5 h-5 hidden"></i>
                 </button>
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <a href="/dashboard" class="text-sm font-medium hover:text-indigo-400 transition-colors flex items-center gap-2">
+                    <a href="<?php echo $base; ?>/dashboard" class="text-sm font-medium hover:text-indigo-400 transition-colors flex items-center gap-2">
                         <i data-lucide="user" class="w-4 h-4"></i>
                         <?php echo $_SESSION['username']; ?>
                     </a>
                     <?php if ($_SESSION['role'] === 'admin'): ?>
-                        <a href="/admin" class="text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors">Admin</a>
+                        <a href="<?php echo $base; ?>/admin" class="text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors">Admin</a>
                     <?php endif; ?>
-                    <a href="/logout" class="text-sm font-medium text-zinc-500 hover:text-red-400 transition-colors">Logout</a>
+                    <a href="<?php echo $base; ?>/logout" class="text-sm font-medium text-zinc-500 hover:text-red-400 transition-colors">Logout</a>
                 <?php else: ?>
-                    <a href="/login" class="text-sm font-medium hover:text-indigo-400 transition-colors">Login</a>
-                    <a href="/register" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-lg shadow-indigo-500/20">Sign Up</a>
+                    <a href="<?php echo $base; ?>/login" class="text-sm font-medium hover:text-indigo-400 transition-colors">Login</a>
+                    <a href="<?php echo $base; ?>/register" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-lg shadow-indigo-500/20">Sign Up</a>
                 <?php endif; ?>
             </div>
         </div>

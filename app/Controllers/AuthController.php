@@ -72,4 +72,16 @@ class AuthController extends Controller
         session_destroy();
         $this->redirect('/');
     }
+
+    public function forgotPassword()
+    {
+        $this->view('auth/forgot', ['title' => 'Reset Password']);
+    }
+
+    public function postForgotPassword()
+    {
+        // Simple placeholder for reset logic
+        // In a full app, we'd generate a token and send an email
+        $this->view('auth/forgot', ['title' => 'Reset Password', 'success' => true]);
+    }
 }

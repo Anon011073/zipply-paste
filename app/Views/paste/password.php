@@ -16,7 +16,7 @@ ob_start();
             </div>
         <?php endif; ?>
 
-        <form action="/v/<?php echo $slug; ?>/unlock" method="POST" class="space-y-4">
+        <form action="<?php echo $base; ?>/v/<?php echo $slug; ?>/unlock" method="POST" class="space-y-4">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <input type="password" name="password" required placeholder="Enter password..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
             <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-indigo-500/20">

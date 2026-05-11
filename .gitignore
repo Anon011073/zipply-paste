@@ -1,0 +1,7 @@
+/vendor
+/storage/database/database.sqlite
+/storage/logs/*.log
+*.log
+.DS_Store
+cookies.txt
+public/css/tailwind.min.css

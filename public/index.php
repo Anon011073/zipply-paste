@@ -1,0 +1,64 @@
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+// Session management
+session_start();
+
+// Security headers
+header("X-XSS-Protection: 1; mode=block");
+header("X-Content-Type-Options: nosniff");
+header("X-Frame-Options: SAMEORIGIN");
+header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;");
+
+// Basic CSRF Protection
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['csrf_token']) || !\App\Helpers\Security::verifyCsrf($_POST['csrf_token'])) {
+        // Only allow bypass for install during development if needed, but better to keep it secure
+        if ($_SERVER['REQUEST_URI'] !== '/install') {
+             die("CSRF token validation failed.");
+        }
+    }
+}
+\App\Helpers\Security::csrfToken();
+
+$router = new \App\Core\Router();
+
+// Define routes
+$router->add('GET', '/', [\App\Controllers\HomeController::class, 'index']);
+$router->add('GET', '/install', [\App\Controllers\InstallController::class, 'index']);
+$router->add('POST', '/install', [\App\Controllers\InstallController::class, 'run']);
+
+// Auth routes
+$router->add('GET', '/login', [\App\Controllers\AuthController::class, 'login']);
+$router->add('POST', '/login', [\App\Controllers\AuthController::class, 'postLogin']);
+$router->add('GET', '/register', [\App\Controllers\AuthController::class, 'register']);
+$router->add('POST', '/register', [\App\Controllers\AuthController::class, 'postRegister']);
+$router->add('GET', '/logout', [\App\Controllers\AuthController::class, 'logout']);
+
+// User routes
+$router->add('GET', '/dashboard', [\App\Controllers\DashboardController::class, 'index']);
+
+// Paste routes
+$router->add('GET', '/paste/new', [\App\Controllers\PasteController::class, 'create']);
+$router->add('POST', '/paste/new', [\App\Controllers\PasteController::class, 'store']);
+$router->add('GET', '/v/{slug}', [\App\Controllers\PasteController::class, 'show']);
+$router->add('POST', '/v/{slug}/unlock', [\App\Controllers\PasteController::class, 'unlock']);
+$router->add('GET', '/raw/{slug}', [\App\Controllers\PasteController::class, 'raw']);
+$router->add('GET', '/download/{slug}', [\App\Controllers\PasteController::class, 'download']);
+$router->add('GET', '/clone/{slug}', [\App\Controllers\PasteController::class, 'clone']);
+
+// User Profile routes
+$router->add('GET', '/u/{username}', [\App\Controllers\UserController::class, 'profile']);
+
+// Search routes
+$router->add('GET', '/search', [\App\Controllers\SearchController::class, 'index']);
+
+// Admin routes
+$router->add('GET', '/admin', [\App\Controllers\AdminController::class, 'index']);
+$router->add('GET', '/admin/users', [\App\Controllers\AdminController::class, 'users']);
+$router->add('GET', '/admin/settings', [\App\Controllers\AdminController::class, 'settings']);
+$router->add('POST', '/admin/settings', [\App\Controllers\AdminController::class, 'saveSettings']);
+
+// Dispatch
+$router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

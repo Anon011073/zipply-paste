@@ -10,7 +10,7 @@ ob_start();
         </a>
     </div>
 
-    <div class="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-xl">
+    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-xl">
         <div class="overflow-x-auto">
             <?php if (empty($pastes)): ?>
                 <div class="p-24 text-center text-zinc-500">
@@ -20,7 +20,7 @@ ob_start();
             <?php else: ?>
                 <table class="w-full text-left text-sm">
                     <thead>
-                        <tr class="bg-zinc-950/50 text-zinc-500 uppercase text-[10px] font-bold tracking-widest">
+                        <tr class="bg-zinc-50 dark:bg-zinc-950/50 text-zinc-500 uppercase text-[10px] font-bold tracking-widest">
                             <th class="px-6 py-4">Title</th>
                             <th class="px-6 py-4">Language</th>
                             <th class="px-6 py-4">Visibility</th>
@@ -29,10 +29,10 @@ ob_start();
                             <th class="px-6 py-4 text-right">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-zinc-800">
+                    <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
                         <?php foreach($pastes as $p): ?>
-                            <tr class="hover:bg-zinc-800/30 transition-colors">
-                                <td class="px-6 py-4 font-medium"><a href="<?php echo $base; ?>/v/<?php echo $p['slug']; ?>" class="hover:text-indigo-400"><?php echo \App\Helpers\View::e($p['title']); ?></a></td>
+                            <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/30 transition-colors">
+                                <td class="px-6 py-4 font-medium text-zinc-900 dark:text-zinc-100"><a href="<?php echo $base; ?>/v/<?php echo $p['slug']; ?>" class="hover:text-indigo-400"><?php echo \App\Helpers\View::e($p['title']); ?></a></td>
                                 <td class="px-6 py-4 text-zinc-400 uppercase text-[10px] font-bold"><?php echo $p['language']; ?></td>
                                 <td class="px-6 py-4">
                                     <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase <?php echo $p['visibility'] === 'public' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-zinc-800 text-zinc-500'; ?>">

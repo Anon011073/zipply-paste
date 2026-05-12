@@ -36,13 +36,13 @@
     <nav class="border-b border-zinc-200 bg-white/80 backdrop-blur-md sticky top-0 z-50 dark:bg-zinc-900/50 dark:border-zinc-800">
         <div class="container mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-8">
-                <a href="<?php echo $base; ?>/" class="flex items-center gap-2 font-bold text-xl tracking-tight">
+                <a href="<?php echo $base; ?>/" class="flex items-center gap-2 font-bold text-xl tracking-tight text-zinc-900 dark:text-white">
                     <i data-lucide="layers" class="text-indigo-500 w-6 h-6"></i>
                     <span>Zipply<span class="text-indigo-500">Paste</span></span>
                 </a>
                 <div class="hidden md:flex items-center gap-6">
-                    <a href="<?php echo $base; ?>/search" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Discover</a>
-                    <a href="<?php echo $base; ?>/paste/new" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Create</a>
+                    <a href="<?php echo $base; ?>/search" class="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-indigo-500 transition-colors">Discover</a>
+                    <a href="<?php echo $base; ?>/paste/new" class="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-indigo-500 transition-colors">Create</a>
                 </div>
             </div>
             <div class="flex items-center gap-4">
@@ -51,8 +51,11 @@
                     <i data-lucide="sun" id="theme-icon-light" class="w-5 h-5 hidden"></i>
                 </button>
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <a href="<?php echo $base; ?>/dashboard" class="text-sm font-medium hover:text-indigo-400 transition-colors flex items-center gap-2">
-                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                    <a href="<?php echo $base; ?>/dashboard" class="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 transition-colors flex items-center gap-2">
+                        <?php
+                            $avatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($_SESSION['user_email'] ?? ''))) . '?d=mp&s=40';
+                        ?>
+                        <img src="<?php echo $avatar; ?>" class="w-6 h-6 rounded-full">
                         Dashboard
                     </a>
                     <?php if ($_SESSION['role'] === 'admin'): ?>
@@ -63,7 +66,7 @@
                     <?php endif; ?>
                     <a href="<?php echo $base; ?>/logout" class="text-sm font-medium text-zinc-500 hover:text-red-400 transition-colors">Logout</a>
                 <?php else: ?>
-                    <a href="<?php echo $base; ?>/login" class="text-sm font-medium hover:text-indigo-400 transition-colors">Login</a>
+                    <a href="<?php echo $base; ?>/login" class="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 transition-colors">Login</a>
                     <a href="<?php echo $base; ?>/register" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-lg shadow-indigo-500/20">Sign Up</a>
                 <?php endif; ?>
             </div>
@@ -74,7 +77,7 @@
         <?php echo $content; ?>
     </main>
 
-    <footer class="border-t border-zinc-800 py-8 bg-zinc-900/30">
+    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-8 bg-zinc-50 dark:bg-zinc-900/30">
         <div class="container mx-auto px-4 text-center text-zinc-500 text-sm">
             &copy; <?php echo date('Y'); ?> Zipply Paste. All rights reserved.
         </div>
@@ -94,11 +97,17 @@
                 darkIcon.classList.add('hidden');
                 lightIcon.classList.remove('hidden');
                 localStorage.setItem('theme', 'dark');
+                if (window.editor) {
+                    monaco.editor.setTheme('vs-dark');
+                }
             } else {
                 document.documentElement.classList.remove('dark');
                 darkIcon.classList.remove('hidden');
                 lightIcon.classList.add('hidden');
                 localStorage.setItem('theme', 'light');
+                if (window.editor) {
+                    monaco.editor.setTheme('vs');
+                }
             }
         }
 

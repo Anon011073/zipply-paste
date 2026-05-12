@@ -3,9 +3,9 @@ ob_start();
 ?>
 
 <div class="max-w-md mx-auto py-12">
-    <div class="bg-zinc-900 border border-zinc-800 p-8 rounded-2xl shadow-2xl">
+    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-2xl shadow-2xl">
         <div class="text-center mb-8">
-            <h1 class="text-2xl font-bold">Create Account</h1>
+            <h1 class="text-2xl font-bold text-zinc-900 dark:text-white">Create Account</h1>
             <p class="text-zinc-500 text-sm">Join the Zipply Paste community</p>
         </div>
 
@@ -18,20 +18,20 @@ ob_start();
         <form action="<?php echo $base; ?>/register" method="POST" class="space-y-4">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <div>
-                <label class="block text-sm font-medium text-zinc-400 mb-1">Full Name</label>
-                <input type="text" name="full_name" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
+                <label class="block text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-1">Full Name</label>
+                <input type="text" name="full_name" class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
             </div>
             <div>
-                <label class="block text-sm font-medium text-zinc-400 mb-1">Username</label>
-                <input type="text" name="username" required class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
+                <label class="block text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-1">Username</label>
+                <input type="text" name="username" required class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
             </div>
             <div>
-                <label class="block text-sm font-medium text-zinc-400 mb-1">Email Address</label>
-                <input type="email" name="email" required class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
+                <label class="block text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-1">Email Address</label>
+                <input type="email" name="email" required class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
             </div>
             <div>
-                <label class="block text-sm font-medium text-zinc-400 mb-1">Password</label>
-                <input type="password" name="password" required class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
+                <label class="block text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-1">Password</label>
+                <input type="password" name="password" required class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
             </div>
 
             <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg transition-all shadow-lg shadow-indigo-500/20 mt-4">

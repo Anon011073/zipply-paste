@@ -10,11 +10,11 @@ ob_start();
         </a>
     </div>
 
-    <div class="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-xl">
+    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-xl">
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm">
                 <thead>
-                    <tr class="bg-zinc-950/50 text-zinc-500 uppercase text-[10px] font-bold tracking-widest">
+                    <tr class="bg-zinc-50 dark:bg-zinc-950/50 text-zinc-500 uppercase text-[10px] font-bold tracking-widest">
                         <th class="px-6 py-4">User</th>
                         <th class="px-6 py-4">Email</th>
                         <th class="px-6 py-4">Role</th>
@@ -22,16 +22,19 @@ ob_start();
                         <th class="px-6 py-4">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-zinc-800">
+                <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
                     <?php foreach ($users as $u): ?>
-                        <tr class="hover:bg-zinc-800/30 transition-colors">
+                        <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/30 transition-colors">
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-zinc-800 rounded-lg flex items-center justify-center font-bold text-xs text-indigo-400">
-                                        <?php echo strtoupper(substr($u['username'], 0, 1)); ?>
+                                    <div class="w-8 h-8 bg-zinc-200 dark:bg-zinc-800 rounded-lg flex items-center justify-center font-bold text-xs text-indigo-400 overflow-hidden">
+                                        <?php
+                                            $avatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($u['email']))) . '?d=mp&s=40';
+                                        ?>
+                                        <img src="<?php echo $avatar; ?>" class="w-full h-full object-cover">
                                     </div>
                                     <div>
-                                        <div class="font-medium text-zinc-200"><?php echo \App\Helpers\View::e($u['username']); ?></div>
+                                        <div class="font-medium text-zinc-900 dark:text-zinc-200"><?php echo \App\Helpers\View::e($u['username']); ?></div>
                                         <div class="text-[10px] text-zinc-500"><?php echo \App\Helpers\View::e($u['full_name']); ?></div>
                                     </div>
                                 </div>

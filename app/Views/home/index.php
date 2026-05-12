@@ -3,7 +3,7 @@ ob_start();
 ?>
 
 <div class="max-w-4xl mx-auto text-center py-12">
-    <h1 class="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">
+    <h1 class="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent italic">
         Simple, Fast, Secure Pasting.
     </h1>
     <p class="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto">
@@ -11,25 +11,25 @@ ob_start();
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition-all group">
+        <div class="bg-zinc-50 dark:bg-zinc-900/50 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-indigo-500/50 transition-all group">
             <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <i data-lucide="zap" class="text-indigo-500"></i>
             </div>
-            <h3 class="font-bold mb-2">Lightning Fast</h3>
+            <h3 class="font-bold mb-2 dark:text-white text-zinc-900">Lightning Fast</h3>
             <p class="text-sm text-zinc-500">Optimized for performance and rapid sharing.</p>
         </div>
-        <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition-all group">
+        <div class="bg-zinc-50 dark:bg-zinc-900/50 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-indigo-500/50 transition-all group">
             <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <i data-lucide="shield" class="text-indigo-500"></i>
             </div>
-            <h3 class="font-bold mb-2">Secure</h3>
+            <h3 class="font-bold mb-2 dark:text-white text-zinc-900">Secure</h3>
             <p class="text-sm text-zinc-500">End-to-end encryption and private paste options.</p>
         </div>
-        <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition-all group">
+        <div class="bg-zinc-50 dark:bg-zinc-900/50 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-indigo-500/50 transition-all group">
             <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <i data-lucide="code" class="text-indigo-500"></i>
             </div>
-            <h3 class="font-bold mb-2">Syntax Ready</h3>
+            <h3 class="font-bold mb-2 dark:text-white text-zinc-900">Syntax Ready</h3>
             <p class="text-sm text-zinc-500">Supports hundreds of languages with Monaco editor.</p>
         </div>
     </div>

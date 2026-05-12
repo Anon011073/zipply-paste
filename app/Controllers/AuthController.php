@@ -32,6 +32,7 @@ class AuthController extends Controller
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
+            $_SESSION['user_email'] = $user['email'];
             $_SESSION['role'] = $user['role'];
             $this->redirect('/');
         }

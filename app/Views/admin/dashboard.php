@@ -35,24 +35,24 @@ ob_start();
         </div>
     </div>
 
-    <div class="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden">
-        <div class="p-6 border-b border-zinc-800">
-            <h2 class="font-bold">Recent Activity</h2>
+    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-xl">
+        <div class="p-6 border-b border-zinc-200 dark:border-zinc-800">
+            <h2 class="font-bold text-zinc-900 dark:text-zinc-100">Recent Activity</h2>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm">
                 <thead>
-                    <tr class="bg-zinc-950/50 text-zinc-500 uppercase text-[10px] font-bold tracking-widest">
+                    <tr class="bg-zinc-50 dark:bg-zinc-950/50 text-zinc-500 uppercase text-[10px] font-bold tracking-widest">
                         <th class="px-6 py-4">Title</th>
                         <th class="px-6 py-4">Language</th>
                         <th class="px-6 py-4">Created</th>
                         <th class="px-6 py-4">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-zinc-800">
+                <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
                     <?php foreach ($recentPastes as $p): ?>
-                        <tr class="hover:bg-zinc-800/30 transition-colors">
-                            <td class="px-6 py-4 font-medium"><?php echo htmlspecialchars($p['title']); ?></td>
+                        <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/30 transition-colors">
+                            <td class="px-6 py-4 font-medium text-zinc-900 dark:text-zinc-100"><?php echo htmlspecialchars($p['title']); ?></td>
                             <td class="px-6 py-4 text-zinc-500"><?php echo $p['language']; ?></td>
                             <td class="px-6 py-4 text-zinc-500"><?php echo date('M j, Y', strtotime($p['created_at'])); ?></td>
                             <td class="px-6 py-4">

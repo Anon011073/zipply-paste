@@ -43,12 +43,18 @@ ob_start();
                                 <td class="px-6 py-4 text-zinc-500"><?php echo date('M j, Y', strtotime($p['created_at'])); ?></td>
                                 <td class="px-6 py-4 text-right">
                                     <div class="flex justify-end gap-2">
+                                        <a href="<?php echo $base; ?>/v/<?php echo $p['slug']; ?>/edit" class="p-2 hover:bg-indigo-500/10 rounded-lg text-zinc-500 hover:text-indigo-500 transition-colors" title="Edit">
+                                            <i data-lucide="edit-3" class="w-4 h-4"></i>
+                                        </a>
                                         <a href="<?php echo $base; ?>/clone/<?php echo $p['slug']; ?>" class="p-2 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-colors" title="Clone">
                                             <i data-lucide="copy" class="w-4 h-4"></i>
                                         </a>
-                                        <button class="p-2 hover:bg-red-500/10 rounded-lg text-zinc-500 hover:text-red-500 transition-colors" title="Delete">
-                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                        </button>
+                                        <form action="<?php echo $base; ?>/v/<?php echo $p['slug']; ?>/delete" method="POST" onsubmit="return confirm('Delete this paste?');" class="inline">
+                                            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                                            <button type="submit" class="p-2 hover:bg-red-500/10 rounded-lg text-zinc-500 hover:text-red-500 transition-colors" title="Delete">
+                                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

@@ -151,4 +151,62 @@ class PasteController extends Controller
 
         $this->view('paste/password', ['slug' => $slug, 'error' => 'Incorrect password']);
     }
+
+    public function edit($params)
+    {
+        if (!isset($_SESSION['user_id'])) $this->redirect('/login');
+
+        $slug = $params['slug'];
+        $paste = $this->pasteModel->findBySlug($slug);
+
+        if (!$paste || $paste['user_id'] != $_SESSION['user_id']) {
+            die("Unauthorized or paste not found.");
+        }
+
+        $recent = $this->pasteModel->getRecent(10);
+        $this->view('paste/edit', [
+            'title' => 'Edit Paste: ' . $paste['title'],
+            'paste' => $paste,
+            'recent' => $recent
+        ]);
+    }
+
+    public function update($params)
+    {
+        if (!isset($_SESSION['user_id'])) $this->redirect('/login');
+
+        $slug = $params['slug'];
+        $paste = $this->pasteModel->findBySlug($slug);
+
+        if (!$paste || $paste['user_id'] != $_SESSION['user_id']) {
+            die("Unauthorized.");
+        }
+
+        $db = \App\Core\Database::getInstance();
+        $stmt = $db->prepare("UPDATE pastes SET title = ?, content = ?, language = ?, visibility = ? WHERE id = ?");
+        $stmt->execute([
+            $_POST['p_title'] ?? 'Untitled',
+            $_POST['content'],
+            $_POST['language'] ?? 'plaintext',
+            $_POST['visibility'] ?? 'public',
+            $paste['id']
+        ]);
+
+        $this->redirect("/v/{$slug}");
+    }
+
+    public function delete($params)
+    {
+        if (!isset($_SESSION['user_id'])) $this->redirect('/login');
+
+        $slug = $params['slug'];
+        $paste = $this->pasteModel->findBySlug($slug);
+
+        if (!$paste || ($paste['user_id'] != $_SESSION['user_id'] && $_SESSION['role'] !== 'admin')) {
+            die("Unauthorized.");
+        }
+
+        $this->pasteModel->delete($paste['id']);
+        $this->redirect('/dashboard');
+    }
 }

@@ -32,9 +32,21 @@ $isMarkdown = ($paste['language'] === 'markdown');
             <a href="<?php echo $base; ?>/download/<?php echo $paste['slug']; ?>" class="bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 border border-zinc-300 dark:border-zinc-700">
                 <i data-lucide="download" class="w-4 h-4"></i> Download
             </a>
-            <a href="<?php echo $base; ?>/clone/<?php echo $paste['slug']; ?>" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
+            <a href="<?php echo $base; ?>/clone/<?php echo $paste['slug']; ?>" class="bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 border border-zinc-300 dark:border-zinc-700">
                 <i data-lucide="copy-plus" class="w-4 h-4"></i> Clone
             </a>
+            <?php if (isset($_SESSION['user_id']) && ($_SESSION['user_id'] == $paste['user_id'] || $_SESSION['role'] === 'admin')): ?>
+                <div class="h-6 w-px bg-zinc-300 dark:bg-zinc-700 mx-1"></div>
+                <a href="<?php echo $base; ?>/v/<?php echo $paste['slug']; ?>/edit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 shadow-lg shadow-indigo-500/20">
+                    <i data-lucide="edit-3" class="w-4 h-4"></i> Edit
+                </a>
+                <form action="<?php echo $base; ?>/v/<?php echo $paste['slug']; ?>/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this paste?');">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 shadow-lg shadow-red-500/20">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i> Delete
+                    </button>
+                </form>
+            <?php endif; ?>
         </div>
     </div>
 

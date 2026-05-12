@@ -13,7 +13,7 @@ session_start();
 header("X-XSS-Protection: 1; mode=block");
 header("X-Content-Type-Options: nosniff");
 header("X-Frame-Options: SAMEORIGIN");
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; worker-src 'self' blob:;");
+header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.gravatar.com https://secure.gravatar.com; worker-src 'self' blob:;");
 
 // Basic CSRF Protection
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -59,6 +59,9 @@ $router->add('GET', '/paste/new', [\App\Controllers\PasteController::class, 'cre
 $router->add('POST', '/paste/new', [\App\Controllers\PasteController::class, 'store']);
 $router->add('GET', '/v/{slug}', [\App\Controllers\PasteController::class, 'show']);
 $router->add('POST', '/v/{slug}/unlock', [\App\Controllers\PasteController::class, 'unlock']);
+$router->add('GET', '/v/{slug}/edit', [\App\Controllers\PasteController::class, 'edit']);
+$router->add('POST', '/v/{slug}/edit', [\App\Controllers\PasteController::class, 'update']);
+$router->add('POST', '/v/{slug}/delete', [\App\Controllers\PasteController::class, 'delete']);
 $router->add('GET', '/raw/{slug}', [\App\Controllers\PasteController::class, 'raw']);
 $router->add('GET', '/download/{slug}', [\App\Controllers\PasteController::class, 'download']);
 $router->add('GET', '/clone/{slug}', [\App\Controllers\PasteController::class, 'clone']);

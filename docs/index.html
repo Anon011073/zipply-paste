@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zipply Paste - Lightweight, Modern Pastebin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #f4f4f5; }
+        .hero-gradient { background: radial-gradient(circle at top, #1e1b4b 0%, #09090b 100%); }
+    </style>
+</head>
+<body class="selection:bg-indigo-500 selection:text-white">
+    <nav class="border-b border-zinc-800 bg-zinc-950/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 font-bold text-2xl tracking-tight">
+                <i data-lucide="layers" class="text-indigo-500 w-8 h-8"></i>
+                <span>Zipply<span class="text-indigo-500">Paste</span></span>
+            </a>
+            <div class="flex items-center gap-8">
+                <a href="#features" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Features</a>
+                <a href="#screenshots" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Showcase</a>
+                <a href="https://github.com/user/zipply-paste" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-indigo-500/20 flex items-center gap-2">
+                    <i data-lucide="github" class="w-4 h-4"></i> Download
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-gradient pt-24 pb-32 overflow-hidden">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-7xl font-black mb-8 italic bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent leading-tight">
+                Simple, Fast,<br>Secure Pasting.
+            </h1>
+            <p class="text-zinc-400 text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+                Zipply Paste is a lightweight, self-hosted, multi-user Pastebin platform designed for developers who value speed and aesthetics.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://github.com/user/zipply-paste/archive/refs/heads/main.zip" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-5 rounded-2xl text-lg font-bold transition-all shadow-2xl shadow-indigo-500/30 flex items-center justify-center gap-3">
+                    <i data-lucide="download-cloud"></i> Get Latest Version
+                </a>
+                <a href="https://paste.boxlabs.uk/" target="_blank" class="w-full sm:w-auto bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-white px-10 py-5 rounded-2xl text-lg font-bold transition-all flex items-center justify-center gap-3">
+                    <i data-lucide="external-link"></i> Live Demo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="screenshots" class="py-24 bg-zinc-950">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-16">The Developer's Choice</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <div class="bg-zinc-900 p-2 rounded-3xl border border-zinc-800 shadow-2xl">
+                        <img src="assets/screenshots/editor.png" alt="Advanced Editor" class="rounded-2xl">
+                    </div>
+                    <p class="text-zinc-500 text-sm font-medium">Monaco Editor with Syntax Highlighting</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-zinc-900 p-2 rounded-3xl border border-zinc-800 shadow-2xl">
+                        <img src="assets/screenshots/profile.png" alt="User Profile" class="rounded-2xl">
+                    </div>
+                    <p class="text-zinc-500 text-sm font-medium">Polished Multi-User Profile Pages</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 border-t border-zinc-900">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="space-y-4">
+                    <div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center">
+                        <i data-lucide="code-2" class="text-indigo-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold italic">Syntax Ready</h3>
+                    <p class="text-zinc-500 leading-relaxed">Integrated Monaco Editor supports hundreds of languages. Features search, replace, and fullscreen mode.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center">
+                        <i data-lucide="shield-check" class="text-purple-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold italic">Secure by Design</h3>
+                    <p class="text-zinc-500 leading-relaxed">Password protection, unlisted visibility, and "burn after read" options keep your snippets private.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center">
+                        <i data-lucide="database" class="text-emerald-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold italic">Easy Deployment</h3>
+                    <p class="text-zinc-500 leading-relaxed">Zero-config SQLite support. Perfect for Laragon, XAMPP, or any standard Apache hosting.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center">
+                        <i data-lucide="layout-dashboard" class="text-amber-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold italic">Admin Control</h3>
+                    <p class="text-zinc-500 leading-relaxed">Powerful dashboard to manage users, settings, and moderate pastes with ease.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center">
+                        <i data-lucide="sun-moon" class="text-blue-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold italic">Theme Toggle</h3>
+                    <p class="text-zinc-500 leading-relaxed">Switch between a professional dark-first aesthetic and a clean light mode instantly.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-14 h-14 bg-pink-500/10 rounded-2xl flex items-center justify-center">
+                        <i data-lucide="terminal" class="text-pink-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold italic">API Support</h3>
+                    <p class="text-zinc-500 leading-relaxed">Generate personal API keys to create and manage pastes programmatically via CLI or scripts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-zinc-950 overflow-hidden relative">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-black mb-8 italic">Ready to Start Pasting?</h2>
+            <p class="text-zinc-500 mb-12 max-w-xl mx-auto">Join the self-hosted revolution with a lightweight, modern platform built for developers.</p>
+            <a href="https://github.com/user/zipply-paste" class="inline-flex items-center gap-3 bg-indigo-600 hover:bg-indigo-700 text-white px-12 py-6 rounded-full text-xl font-black transition-all shadow-2xl shadow-indigo-500/20">
+                <i data-lucide="github"></i> View on GitHub
+            </a>
+        </div>
+    </section>
+
+    <footer class="border-t border-zinc-900 py-12 bg-zinc-950 text-center">
+        <p class="text-zinc-600 text-sm">&copy; 2024 Zipply Paste. Open source under MIT License.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

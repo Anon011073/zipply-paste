@@ -4,15 +4,15 @@ ob_start();
 
 <div class="max-w-4xl mx-auto">
     <div class="flex items-center justify-between mb-8">
-        <h1 class="text-3xl font-bold">Site Settings</h1>
+        <h1 class="text-3xl font-bold text-zinc-900 dark:text-white">Site Settings</h1>
         <a href="<?php echo $base; ?>/admin" class="text-sm text-indigo-400 hover:underline flex items-center gap-1">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Admin
         </a>
     </div>
 
     <div class="space-y-6">
-        <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-xl">
-            <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+        <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 shadow-xl">
+            <h2 class="text-xl font-bold mb-6 flex items-center gap-2 text-zinc-900 dark:text-white">
                 <i data-lucide="globe" class="text-indigo-500 w-5 h-5"></i>
                 General Settings
             </h2>
@@ -21,11 +21,11 @@ ob_start();
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-sm font-medium text-zinc-500 mb-2">Site Name</label>
-                        <input type="text" name="site_name" value="<?php echo htmlspecialchars($settings['site_name'] ?? 'Zipply Paste'); ?>" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
+                        <input type="text" name="site_name" value="<?php echo htmlspecialchars($settings['site_name'] ?? 'Zipply Paste'); ?>" class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-zinc-500 mb-2">Site Tagline</label>
-                        <input type="text" name="site_tagline" value="<?php echo htmlspecialchars($settings['site_tagline'] ?? 'Simple, Fast, Secure Pasting'); ?>" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
+                        <input type="text" name="site_tagline" value="<?php echo htmlspecialchars($settings['site_tagline'] ?? 'Simple, Fast, Secure Pasting'); ?>" class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
                     </div>
                 </div>
                 <div>
@@ -39,27 +39,27 @@ ob_start();
                 </div>
         </div>
 
-        <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-xl">
-            <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+        <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 shadow-xl">
+            <h2 class="text-xl font-bold mb-6 flex items-center gap-2 text-zinc-900 dark:text-white">
                 <i data-lucide="mail" class="text-indigo-500 w-5 h-5"></i>
                 SMTP Configuration
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-sm font-medium text-zinc-500 mb-2">SMTP Host</label>
-                    <input type="text" name="smtp_host" value="<?php echo htmlspecialchars($settings['smtp_host'] ?? ''); ?>" placeholder="smtp.gmail.com" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
+                    <input type="text" name="smtp_host" value="<?php echo htmlspecialchars($settings['smtp_host'] ?? ''); ?>" placeholder="smtp.gmail.com" class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-zinc-500 mb-2">SMTP Port</label>
-                    <input type="text" name="smtp_port" value="<?php echo htmlspecialchars($settings['smtp_port'] ?? '587'); ?>" placeholder="587" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
+                    <input type="text" name="smtp_port" value="<?php echo htmlspecialchars($settings['smtp_port'] ?? '587'); ?>" placeholder="587" class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-zinc-500 mb-2">SMTP Username</label>
-                    <input type="text" name="smtp_user" value="<?php echo htmlspecialchars($settings['smtp_user'] ?? ''); ?>" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
+                    <input type="text" name="smtp_user" value="<?php echo htmlspecialchars($settings['smtp_user'] ?? ''); ?>" class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-zinc-500 mb-2">SMTP Password</label>
-                    <input type="password" name="smtp_pass" value="<?php echo htmlspecialchars($settings['smtp_pass'] ?? ''); ?>" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
+                    <input type="password" name="smtp_pass" value="<?php echo htmlspecialchars($settings['smtp_pass'] ?? ''); ?>" class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
                 </div>
             </div>
         </div>

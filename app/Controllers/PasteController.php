@@ -45,7 +45,7 @@ class PasteController extends Controller
 
         $data = [
             'slug' => $slug,
-            'title' => $_POST['title'] ?? 'Untitled',
+            'title' => $_POST['paste_title'] ?? 'Untitled',
             'content' => $content,
             'language' => $_POST['language'] ?? 'plaintext',
             'visibility' => $_POST['visibility'] ?? 'public',

@@ -10,7 +10,7 @@ ob_start();
         <div class="flex flex-col md:flex-row gap-4 items-end">
             <div class="flex-grow w-full">
                 <label class="block text-sm font-medium text-zinc-500 mb-2">Paste Title</label>
-                <input type="text" name="title" autocomplete="off" value="<?php echo isset($clone) ? htmlspecialchars($clone['title']) . ' (Clone)' : ''; ?>" placeholder="Untitled Paste" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all text-lg font-bold">
+                <input type="text" name="paste_title" id="paste_title" autocomplete="new-password" value="<?php echo isset($clone) ? htmlspecialchars($clone['title']) . ' (Clone)' : ''; ?>" placeholder="Untitled Paste" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all text-lg font-bold">
             </div>
             <div class="flex gap-2">
                 <select name="language" class="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all text-sm font-medium">
@@ -23,9 +23,9 @@ ob_start();
             </div>
         </div>
 
-        <div class="relative group z-0">
-            <div id="editor-container" style="height: 500px;" class="rounded-2xl border border-zinc-800 overflow-hidden bg-zinc-900 shadow-2xl group-hover:border-zinc-700 transition-all"></div>
-            <textarea name="content" id="content-textarea" class="hidden"><?php echo isset($clone) ? htmlspecialchars($clone['content']) : ''; ?></textarea>
+        <div class="relative group z-10">
+            <div id="editor-container" style="height: 500px; min-height: 500px; width: 100%;" class="rounded-2xl border border-zinc-800 overflow-hidden bg-zinc-900 shadow-2xl group-hover:border-zinc-700 transition-all"></div>
+            <textarea name="content" id="content-textarea" style="display:none;"><?php echo isset($clone) ? htmlspecialchars($clone['content']) : ''; ?></textarea>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">

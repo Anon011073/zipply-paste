@@ -5,8 +5,8 @@ ob_start();
 <div class="max-w-6xl mx-auto">
     <div class="flex items-center justify-between mb-8">
         <h1 class="text-3xl font-bold">Manage Users</h1>
-        <a href="/admin" class="text-sm text-indigo-400 hover:underline flex items-center gap-1">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Dashboard
+        <a href="<?php echo $base; ?>/admin" class="text-sm text-indigo-400 hover:underline flex items-center gap-1">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Admin
         </a>
     </div>
 

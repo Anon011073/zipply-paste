@@ -35,7 +35,7 @@ ob_start();
     <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden">
         <div class="p-6 border-b border-zinc-800 flex items-center justify-between">
             <h2 class="font-bold">Recent Pastes</h2>
-            <a href="/user/pastes" class="text-sm text-indigo-400 hover:underline">View All</a>
+            <a href="<?php echo $base; ?>/user/pastes" class="text-sm text-indigo-400 hover:underline">View All</a>
         </div>
         <div class="overflow-x-auto">
             <?php if (empty($recentPastes)): ?>
@@ -104,6 +104,9 @@ ob_start();
                 Profile Settings
             </h2>
             <div class="space-y-4">
+                <a href="<?php echo $base; ?>/profile/edit" class="block w-full text-center bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 py-2 rounded-lg text-sm font-medium transition-colors border border-indigo-500/20">
+                    Edit Profile / BIO
+                </a>
                 <a href="<?php echo $base; ?>/u/<?php echo $user['username']; ?>" class="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white py-2 rounded-lg text-sm font-medium transition-colors">
                     View Public Profile
                 </a>

@@ -48,6 +48,9 @@ $router->add('POST', '/forgot-password', [\App\Controllers\AuthController::class
 // User routes
 $router->add('GET', '/dashboard', [\App\Controllers\DashboardController::class, 'index']);
 $router->add('POST', '/api/keys', [\App\Controllers\DashboardController::class, 'createApiKey']);
+$router->add('GET', '/profile/edit', [\App\Controllers\UserController::class, 'edit']);
+$router->add('POST', '/profile/edit', [\App\Controllers\UserController::class, 'update']);
+$router->add('GET', '/user/pastes', [\App\Controllers\UserController::class, 'pastes']);
 
 // Paste routes
 $router->add('GET', '/paste/new', [\App\Controllers\PasteController::class, 'create']);

@@ -6,11 +6,14 @@ ob_start();
     <div class="lg:col-span-3">
     <form action="<?php echo $base; ?>/paste/new" method="POST" class="space-y-6">
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+        <!-- Dummy fields to fool browser autofill -->
+        <input type="text" name="prevent_autofill" style="display:none" tabindex="-1">
+        <input type="password" name="password_fake" style="display:none" tabindex="-1">
 
         <div class="flex flex-col md:flex-row gap-4 items-end">
             <div class="flex-grow w-full">
                 <label class="block text-sm font-medium text-zinc-500 mb-2">Paste Title</label>
-                <input type="text" name="paste_title" id="paste_title" autocomplete="new-password" value="<?php echo isset($clone) ? htmlspecialchars($clone['title']) . ' (Clone)' : ''; ?>" placeholder="Untitled Paste" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all text-lg font-bold">
+                <input type="text" name="p_title" id="p_title" autocomplete="off" value="<?php echo isset($clone) ? htmlspecialchars($clone['title']) . ' (Clone)' : ''; ?>" placeholder="Untitled Paste" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all text-lg font-bold">
             </div>
             <div class="flex gap-2">
                 <select name="language" class="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all text-sm font-medium">

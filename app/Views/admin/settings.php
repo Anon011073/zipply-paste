@@ -16,7 +16,7 @@ ob_start();
                 <i data-lucide="globe" class="text-indigo-500 w-5 h-5"></i>
                 General Settings
             </h2>
-            <form action="/admin/settings" method="POST" class="space-y-4">
+            <form action="<?php echo $base; ?>/admin/settings" method="POST" class="space-y-4">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>

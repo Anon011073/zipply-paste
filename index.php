@@ -13,7 +13,7 @@ session_start();
 header("X-XSS-Protection: 1; mode=block");
 header("X-Content-Type-Options: nosniff");
 header("X-Frame-Options: SAMEORIGIN");
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;");
+header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; worker-src 'self' blob:;");
 
 // Basic CSRF Protection
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -50,6 +50,8 @@ $router->add('GET', '/dashboard', [\App\Controllers\DashboardController::class, 
 $router->add('POST', '/api/keys', [\App\Controllers\DashboardController::class, 'createApiKey']);
 $router->add('GET', '/profile/edit', [\App\Controllers\UserController::class, 'edit']);
 $router->add('POST', '/profile/edit', [\App\Controllers\UserController::class, 'update']);
+$router->add('POST', '/profile/password', [\App\Controllers\UserController::class, 'updatePassword']);
+$router->add('POST', '/profile/delete', [\App\Controllers\UserController::class, 'deleteAccount']);
 $router->add('GET', '/user/pastes', [\App\Controllers\UserController::class, 'pastes']);
 
 // Paste routes

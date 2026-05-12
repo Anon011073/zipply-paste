@@ -14,13 +14,13 @@ ob_start();
             <div class="bg-zinc-950/50 p-4 rounded-xl border border-zinc-800 mb-6">
                 <label class="block text-xs font-bold uppercase tracking-widest text-zinc-500 mb-3">Database Type</label>
                 <div class="grid grid-cols-2 gap-2">
-                    <label class="cursor-pointer">
+                    <label class="cursor-pointer group">
                         <input type="radio" name="db_driver" value="sqlite" checked class="hidden peer">
-                        <div class="p-3 text-center border border-zinc-800 rounded-lg peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 transition-all text-sm text-zinc-300 peer-checked:text-white">SQLite</div>
+                        <div class="p-3 text-center border border-zinc-800 rounded-lg peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 transition-all text-sm text-zinc-400 group-hover:text-zinc-200 peer-checked:text-white font-bold">SQLite</div>
                     </label>
-                    <label class="cursor-pointer">
+                    <label class="cursor-pointer group">
                         <input type="radio" name="db_driver" value="mysql" class="hidden peer">
-                        <div class="p-3 text-center border border-zinc-800 rounded-lg peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 transition-all text-sm text-zinc-300 peer-checked:text-white">MySQL</div>
+                        <div class="p-3 text-center border border-zinc-800 rounded-lg peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 transition-all text-sm text-zinc-400 group-hover:text-zinc-200 peer-checked:text-white font-bold">MySQL</div>
                     </label>
                 </div>
             </div>

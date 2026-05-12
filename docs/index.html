@@ -23,7 +23,8 @@
                 <a href="#features" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Features</a>
                 <a href="#screenshots" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Showcase</a>
                 <a href="https://github.com/user/zipply-paste" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-indigo-500/20 flex items-center gap-2">
-                    <i data-lucide="github" class="w-4 h-4"></i> Download
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Download</span>
                 </a>
             </div>
         </div>
@@ -39,7 +40,8 @@
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="https://github.com/user/zipply-paste/archive/refs/heads/main.zip" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-5 rounded-2xl text-lg font-bold transition-all shadow-2xl shadow-indigo-500/30 flex items-center justify-center gap-3">
-                    <i data-lucide="download-cloud"></i> Get Latest Version
+                    <i data-lucide="download" class="w-6 h-6"></i>
+                    <span>Get Latest Version</span>
                 </a>
                 <a href="https://paste.boxlabs.uk/" target="_blank" class="w-full sm:w-auto bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-white px-10 py-5 rounded-2xl text-lg font-bold transition-all flex items-center justify-center gap-3">
                     <i data-lucide="external-link"></i> Live Demo
@@ -50,19 +52,49 @@
 
     <section id="screenshots" class="py-24 bg-zinc-950">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-16">The Developer's Choice</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="space-y-4">
+            <h2 class="text-4xl font-bold mb-16 italic text-indigo-400">Aesthetic Meets Functionality</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="space-y-4 lg:col-span-2">
                     <div class="bg-zinc-900 p-2 rounded-3xl border border-zinc-800 shadow-2xl">
-                        <img src="assets/screenshots/editor.png" alt="Advanced Editor" class="rounded-2xl">
+                        <img src="assets/screenshots/editor_active.png" alt="Syntax Highlighting" class="rounded-2xl shadow-inner">
                     </div>
-                    <p class="text-zinc-500 text-sm font-medium">Monaco Editor with Syntax Highlighting</p>
+                    <p class="text-zinc-500 text-sm font-medium">Monaco Editor with Vibrant Syntax Highlighting</p>
                 </div>
                 <div class="space-y-4">
                     <div class="bg-zinc-900 p-2 rounded-3xl border border-zinc-800 shadow-2xl">
-                        <img src="assets/screenshots/profile.png" alt="User Profile" class="rounded-2xl">
+                        <img src="assets/screenshots/view_paste.png" alt="View Paste" class="rounded-2xl shadow-inner">
                     </div>
-                    <p class="text-zinc-500 text-sm font-medium">Polished Multi-User Profile Pages</p>
+                    <p class="text-zinc-500 text-sm font-medium">Clean & Readable Paste Views</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-zinc-900 p-2 rounded-3xl border border-zinc-800 shadow-2xl h-full flex flex-col">
+                        <img src="assets/screenshots/profile_view.png" alt="User Profile" class="rounded-2xl shadow-inner flex-grow object-cover">
+                    </div>
+                    <p class="text-zinc-500 text-sm font-medium">Public Developer Profiles</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-zinc-900 p-2 rounded-3xl border border-zinc-800 shadow-2xl h-full flex flex-col">
+                        <img src="assets/screenshots/admin_dashboard.png" alt="Admin Dashboard" class="rounded-2xl shadow-inner flex-grow object-cover">
+                    </div>
+                    <p class="text-zinc-500 text-sm font-medium">Powerful Admin Dashboards</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-zinc-900 p-2 rounded-3xl border border-zinc-800 shadow-2xl h-full flex flex-col">
+                        <img src="assets/screenshots/discover.png" alt="Discover" class="rounded-2xl shadow-inner flex-grow object-cover">
+                    </div>
+                    <p class="text-zinc-500 text-sm font-medium">Paste Discovery & Search</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-zinc-900 p-2 rounded-3xl border border-zinc-800 shadow-2xl h-full flex flex-col">
+                        <img src="assets/screenshots/home_dark.png" alt="Dark Mode" class="rounded-2xl shadow-inner flex-grow object-cover">
+                    </div>
+                    <p class="text-zinc-500 text-sm font-medium">Native Dark First UI</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-zinc-900 p-2 rounded-3xl border border-zinc-800 shadow-2xl h-full flex flex-col">
+                        <img src="assets/screenshots/home_light.png" alt="Light Mode" class="rounded-2xl shadow-inner flex-grow object-cover">
+                    </div>
+                    <p class="text-zinc-500 text-sm font-medium">Sleek Light Mode Theme</p>
                 </div>
             </div>
         </div>
@@ -117,12 +149,12 @@
         </div>
     </section>
 
-    <section class="py-32 bg-zinc-950 overflow-hidden relative">
+    <section class="py-32 bg-zinc-950 overflow-hidden relative border-t border-zinc-900">
         <div class="container mx-auto px-6 text-center relative z-10">
-            <h2 class="text-4xl md:text-5xl font-black mb-8 italic">Ready to Start Pasting?</h2>
-            <p class="text-zinc-500 mb-12 max-w-xl mx-auto">Join the self-hosted revolution with a lightweight, modern platform built for developers.</p>
+            <h2 class="text-4xl md:text-5xl font-black mb-8 italic">Get Your Copy of Zipply Paste Now</h2>
+            <p class="text-zinc-500 mb-12 max-w-xl mx-auto">Free, open-source, and built for developers. Host your own professional pastebin platform in minutes.</p>
             <a href="https://github.com/user/zipply-paste" class="inline-flex items-center gap-3 bg-indigo-600 hover:bg-indigo-700 text-white px-12 py-6 rounded-full text-xl font-black transition-all shadow-2xl shadow-indigo-500/20">
-                <i data-lucide="github"></i> View on GitHub
+                <i data-lucide="github" class="w-6 h-6"></i> View on GitHub
             </a>
         </div>
     </section>

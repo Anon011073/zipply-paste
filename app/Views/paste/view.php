@@ -29,6 +29,9 @@ $isMarkdown = ($paste['language'] === 'markdown');
             <button onclick="copyToClipboard()" class="bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 border border-zinc-300 dark:border-zinc-700">
                 <i data-lucide="copy" class="w-4 h-4"></i> Copy
             </button>
+            <button onclick="sharePaste()" class="bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 border border-zinc-300 dark:border-zinc-700">
+                <i data-lucide="share" class="w-4 h-4"></i> Share
+            </button>
             <a href="<?php echo $base; ?>/download/<?php echo $paste['slug']; ?>" class="bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 border border-zinc-300 dark:border-zinc-700">
                 <i data-lucide="download" class="w-4 h-4"></i> Download
             </a>
@@ -104,7 +107,14 @@ $isMarkdown = ($paste['language'] === 'markdown');
     function copyToClipboard() {
         const content = <?php echo json_encode($paste['content']); ?>;
         navigator.clipboard.writeText(content).then(() => {
-            alert('Copied to clipboard!');
+            alert('Paste content copied to clipboard!');
+        });
+    }
+
+    function sharePaste() {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Paste link copied to clipboard!');
         });
     }
 </script>

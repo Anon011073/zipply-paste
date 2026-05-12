@@ -10,7 +10,8 @@ ob_start();
                 <div class="flex items-end gap-6">
                     <div class="w-32 h-32 bg-zinc-200 dark:bg-zinc-800 rounded-2xl border-4 border-white dark:border-zinc-900 shadow-xl flex items-center justify-center overflow-hidden">
                         <?php
-                            $avatar = $user['avatar'] ?: 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($user['email']))) . '?d=mp&s=200';
+                            $hash = md5(strtolower(trim($user['email'])));
+                            $avatar = $user['avatar'] ?: "https://www.gravatar.com/avatar/{$hash}?d=mp&s=200";
                         ?>
                         <img src="<?php echo \App\Helpers\View::e($avatar); ?>" class="w-full h-full object-cover">
                     </div>

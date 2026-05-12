@@ -53,9 +53,10 @@
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <a href="<?php echo $base; ?>/dashboard" class="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 transition-colors flex items-center gap-2">
                         <?php
-                            $avatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($_SESSION['user_email'] ?? ''))) . '?d=mp&s=40';
+                            $hash = md5(strtolower(trim($_SESSION['user_email'] ?? '')));
+                            $avatar = "https://www.gravatar.com/avatar/{$hash}?d=mp&s=40";
                         ?>
-                        <img src="<?php echo $avatar; ?>" class="w-6 h-6 rounded-full">
+                        <img src="<?php echo $avatar; ?>" class="w-6 h-6 rounded-full border border-zinc-200 dark:border-zinc-800">
                         Dashboard
                     </a>
                     <?php if ($_SESSION['role'] === 'admin'): ?>

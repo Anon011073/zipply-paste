@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+        if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'moderator'])) {
             $this->redirect('/');
         }
     }
@@ -35,12 +35,46 @@ class AdminController extends Controller
 
     public function users()
     {
-        $users = (new User())->all();
-        $this->view('admin/users', ['title' => 'Manage Users', 'users' => $users]);
+        $limit = 20;
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $offset = ($page - 1) * $limit;
+
+        $userModel = new User();
+        $users = $userModel->all($limit, $offset);
+        $total = $userModel->count();
+        $totalPages = ceil($total / $limit);
+
+        $this->view('admin/users', [
+            'title' => 'Manage Users',
+            'users' => $users,
+            'page' => $page,
+            'totalPages' => $totalPages
+        ]);
+    }
+
+    public function deleteUser($params)
+    {
+        if ($_SESSION['role'] !== 'admin') die("Unauthorized.");
+
+        $id = $params['id'];
+        if ($id == $_SESSION['user_id']) {
+            die("Cannot delete yourself.");
+        }
+
+        $userModel = new User();
+        $userModel->delete($id);
+
+        // Also delete their pastes
+        $db = \App\Core\Database::getInstance();
+        $stmt = $db->prepare("DELETE FROM pastes WHERE user_id = ?");
+        $stmt->execute([$id]);
+
+        $this->redirect('/admin/users');
     }
 
     public function settings()
     {
+        if ($_SESSION['role'] !== 'admin') die("Unauthorized.");
         $settingModel = new \App\Models\Setting();
         $settings = $settingModel->getAll();
         $this->view('admin/settings', ['title' => 'Site Settings', 'settings' => $settings]);
@@ -48,9 +82,16 @@ class AdminController extends Controller
 
     public function saveSettings()
     {
+        if ($_SESSION['role'] !== 'admin') die("Unauthorized.");
         $settingModel = new \App\Models\Setting();
+        $allowedKeys = [
+            'site_name', 'site_description', 'allow_guest_pastes',
+            'registration_enabled', 'maintenance_mode', 'footer_text',
+            'max_paste_size', 'default_expiration', 'theme_primary_color'
+        ];
+
         foreach ($_POST as $key => $value) {
-            if ($key !== 'csrf_token') {
+            if (in_array($key, $allowedKeys)) {
                 $settingModel->set($key, $value);
             }
         }

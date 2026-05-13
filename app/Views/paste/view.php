@@ -69,6 +69,14 @@ $isMarkdown = ($paste['language'] === 'markdown');
     </div>
 
     <div class="space-y-6">
+        <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-2 mb-4">
+                <i data-lucide="qr-code" class="w-4 h-4"></i> Share QR Code
+            </h2>
+            <div id="qrcode" class="bg-white p-4 rounded-xl flex justify-center border border-zinc-100 dark:border-zinc-800"></div>
+            <p class="text-[10px] text-zinc-500 mt-4 text-center">Scan to open on mobile</p>
+        </div>
+
         <h2 class="text-sm font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-2">
             <i data-lucide="clock" class="w-4 h-4"></i> Recent Pastes
         </h2>
@@ -84,6 +92,7 @@ $isMarkdown = ($paste['language'] === 'markdown');
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
     <?php if (!$isMarkdown): ?>
     require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' }});
@@ -117,6 +126,16 @@ $isMarkdown = ($paste['language'] === 'markdown');
             alert('Paste link copied to clipboard!');
         });
     }
+
+    // QR Code Generation
+    new QRCode(document.getElementById("qrcode"), {
+        text: window.location.href,
+        width: 160,
+        height: 160,
+        colorDark : "#09090b",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
 </script>
 
 <?php

@@ -1,7 +1,7 @@
 <?php
 
 if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
-    die("<h1>Zipply Paste: Dependencies Missing</h1><p>Please ensure the <code>vendor/</code> directory is present in the root directory.</p>");
+    die("<h1>Swiffy Code: Dependencies Missing</h1><p>Please ensure the <code>vendor/</code> directory is present in the root directory.</p>");
 }
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -44,6 +44,8 @@ $router->add('POST', '/register', [\App\Controllers\AuthController::class, 'post
 $router->add('GET', '/logout', [\App\Controllers\AuthController::class, 'logout']);
 $router->add('GET', '/forgot-password', [\App\Controllers\AuthController::class, 'forgotPassword']);
 $router->add('POST', '/forgot-password', [\App\Controllers\AuthController::class, 'postForgotPassword']);
+$router->add('GET', '/reset-password', [\App\Controllers\AuthController::class, 'resetPassword']);
+$router->add('POST', '/reset-password', [\App\Controllers\AuthController::class, 'postResetPassword']);
 
 // User routes
 $router->add('GET', '/dashboard', [\App\Controllers\DashboardController::class, 'index']);
@@ -75,6 +77,7 @@ $router->add('GET', '/search', [\App\Controllers\SearchController::class, 'index
 // Admin routes
 $router->add('GET', '/admin', [\App\Controllers\AdminController::class, 'index']);
 $router->add('GET', '/admin/users', [\App\Controllers\AdminController::class, 'users']);
+$router->add('POST', '/admin/users/delete/{id}', [\App\Controllers\AdminController::class, 'deleteUser']);
 $router->add('GET', '/admin/settings', [\App\Controllers\AdminController::class, 'settings']);
 $router->add('POST', '/admin/settings', [\App\Controllers\AdminController::class, 'saveSettings']);
 

@@ -6,7 +6,7 @@ ob_start();
     <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-2xl shadow-2xl">
         <div class="text-center mb-8">
             <h1 class="text-2xl font-bold text-zinc-900 dark:text-white">Create Account</h1>
-            <p class="text-zinc-500 text-sm">Join the Zipply Paste community</p>
+            <p class="text-zinc-500 text-sm">Join the Swiffy Code community</p>
         </div>
 
         <?php if (isset($error)): ?>

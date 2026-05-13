@@ -4,3 +4,5 @@
 .DS_Store
 cookies.txt
 public/css/tailwind.min.css
+/vendor/
+composer.lock

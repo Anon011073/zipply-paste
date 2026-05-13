@@ -36,13 +36,20 @@ class Paste extends Model
         return $this->db->lastInsertId();
     }
 
-    public function getRecent($limit = 10)
+    public function getRecent($limit = 10, $offset = 0)
     {
         $driver = $this->db->getAttribute(\PDO::ATTR_DRIVER_NAME);
         $now = ($driver === 'sqlite') ? "DATETIME('now')" : "NOW()";
-        $stmt = $this->db->prepare("SELECT slug, title, language, created_at FROM {$this->table} WHERE visibility = 'public' AND (expires_at IS NULL OR expires_at > $now) ORDER BY created_at DESC LIMIT ?");
-        $stmt->execute([$limit]);
+        $stmt = $this->db->prepare("SELECT slug, title, language, created_at FROM {$this->table} WHERE visibility = 'public' AND (expires_at IS NULL OR expires_at > $now) ORDER BY created_at DESC LIMIT ? OFFSET ?");
+        $stmt->execute([$limit, $offset]);
         return $stmt->fetchAll();
+    }
+
+    public function countPublic()
+    {
+        $driver = $this->db->getAttribute(\PDO::ATTR_DRIVER_NAME);
+        $now = ($driver === 'sqlite') ? "DATETIME('now')" : "NOW()";
+        return $this->db->query("SELECT COUNT(*) FROM {$this->table} WHERE visibility = 'public' AND (expires_at IS NULL OR expires_at > $now)")->fetchColumn();
     }
 
     public function incrementViews($id)

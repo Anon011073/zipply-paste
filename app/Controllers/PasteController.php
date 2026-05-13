@@ -62,21 +62,38 @@ class PasteController extends Controller
         $this->redirect('/paste/new');
     }
 
-    public function show($params)
+    private function checkAccess($paste)
     {
-        $slug = $params['slug'];
-        $paste = $this->pasteModel->findBySlug($slug);
-
         if (!$paste) {
             die("Paste not found.");
         }
 
-        $recent = $this->pasteModel->getRecent(10);
+        // Check visibility
+        if ($paste['visibility'] === 'private') {
+            $is_owner = isset($_SESSION['user_id']) && $_SESSION['user_id'] == $paste['user_id'];
+            $is_privileged = isset($_SESSION['role']) && in_array($_SESSION['role'], ['admin', 'moderator']);
+
+            if (!$is_owner && !$is_privileged) {
+                die("This is a private paste.");
+            }
+        }
 
         // Check expiration
         if ($paste['expires_at'] && strtotime($paste['expires_at']) < time()) {
             die("Paste has expired.");
         }
+
+        return true;
+    }
+
+    public function show($params)
+    {
+        $slug = $params['slug'];
+        $paste = $this->pasteModel->findBySlug($slug);
+
+        $this->checkAccess($paste);
+
+        $recent = $this->pasteModel->getRecent(10);
 
         // Check password
         if ($paste['password'] && !isset($_SESSION['unlocked_pastes'][$slug])) {
@@ -102,7 +119,14 @@ class PasteController extends Controller
     {
         $slug = $params['slug'];
         $paste = $this->pasteModel->findBySlug($slug);
-        if (!$paste) die("Not found");
+
+        $this->checkAccess($paste);
+
+        // Check password
+        if ($paste['password'] && !isset($_SESSION['unlocked_pastes'][$slug])) {
+            die("Password protected.");
+        }
+
         header('Content-Type: text/plain');
         echo $paste['content'];
         exit;
@@ -112,7 +136,13 @@ class PasteController extends Controller
     {
         $slug = $params['slug'];
         $paste = $this->pasteModel->findBySlug($slug);
-        if (!$paste) die("Not found");
+
+        $this->checkAccess($paste);
+
+        // Check password
+        if ($paste['password'] && !isset($_SESSION['unlocked_pastes'][$slug])) {
+            die("Password protected.");
+        }
 
         $ext = 'txt';
         $langs = ['javascript' => 'js', 'php' => 'php', 'python' => 'py', 'html' => 'html', 'css' => 'css', 'markdown' => 'md'];
@@ -128,7 +158,13 @@ class PasteController extends Controller
     {
         $slug = $params['slug'];
         $paste = $this->pasteModel->findBySlug($slug);
-        if (!$paste) die("Not found");
+
+        $this->checkAccess($paste);
+
+        // Check password
+        if ($paste['password'] && !isset($_SESSION['unlocked_pastes'][$slug])) {
+            die("Password protected.");
+        }
 
         $recent = $this->pasteModel->getRecent(10);
         $this->view('paste/create', [

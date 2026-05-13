@@ -110,9 +110,12 @@ ob_start();
                 <a href="<?php echo $base; ?>/u/<?php echo $user['username']; ?>" class="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white py-2 rounded-lg text-sm font-medium transition-colors">
                     View Public Profile
                 </a>
-                <button class="block w-full text-center bg-red-600/10 hover:bg-red-600/20 text-red-500 py-2 rounded-lg text-sm font-medium transition-colors border border-red-500/20">
-                    Delete My Account
-                </button>
+                <form action="<?php echo $base; ?>/profile/delete" method="POST" onsubmit="return confirm('Are you absolutely sure? All your pastes will be permanently deleted.');">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                    <button type="submit" class="block w-full text-center bg-red-600/10 hover:bg-red-600/20 text-red-500 py-2 rounded-lg text-sm font-medium transition-colors border border-red-500/20">
+                        Delete My Account
+                    </button>
+                </form>
             </div>
         </div>
     </div>

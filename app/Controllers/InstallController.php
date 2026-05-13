@@ -14,7 +14,7 @@ class InstallController extends Controller
             $this->redirect('/');
         }
 
-        $this->view('admin/install', ['title' => 'Install Zipply Paste']);
+        $this->view('admin/install', ['title' => 'Install Swiffy Code']);
     }
 
     public function run()

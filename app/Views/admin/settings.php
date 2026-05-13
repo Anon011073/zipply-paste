@@ -21,7 +21,7 @@ ob_start();
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-sm font-medium text-zinc-500 mb-2">Site Name</label>
-                        <input type="text" name="site_name" value="<?php echo htmlspecialchars($settings['site_name'] ?? 'Zipply Paste'); ?>" class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
+                        <input type="text" name="site_name" value="<?php echo htmlspecialchars($settings['site_name'] ?? 'Swiffy Code'); ?>" class="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-zinc-500 mb-2">Site Tagline</label>

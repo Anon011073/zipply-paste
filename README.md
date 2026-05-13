@@ -1,12 +1,12 @@
-# Zipply Paste 🚀
+# Swiffy Code 🚀
 
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D%208.0-777bb4.svg)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Style](https://img.shields.io/badge/style-modern--dark-indigo.svg)](https://zipply.io)
 
-Zipply Paste is a **lightweight, self-hosted, multi-user Pastebin platform** built with PHP 8+. Designed for speed, security, and developer experience, it combines the simplicity of classic pastebins with a polished, modern UI inspired by high-end file transfer tools.
+Swiffy Code is a **lightweight, self-hosted, multi-user Pastebin platform** built with PHP 8+. Designed for speed, security, and developer experience, it combines the simplicity of classic pastebins with a polished, modern UI inspired by high-end file transfer tools.
 
-[**Live Demo**](https://paste.boxlabs.uk/) | [**Documentation**](docs/) | [**Download**](https://github.com/user/zipply-paste/archive/refs/heads/main.zip)
+[**Live Demo**](https://paste.boxlabs.uk/) | [**Documentation**](docs/) | [**Download**](https://github.com/user/swiffy-code/archive/refs/heads/main.zip)
 
 ---
 
@@ -47,9 +47,9 @@ Zipply Paste is a **lightweight, self-hosted, multi-user Pastebin platform** bui
 - Apache with `mod_rewrite` enabled
 
 ### 2. Installation
-1. **Download:** [Download the latest release](https://github.com/user/zipply-paste/archive/refs/heads/main.zip) and extract it to your server.
+1. **Download:** [Download the latest release](https://github.com/user/swiffy-code/archive/refs/heads/main.zip) and extract it to your server.
 2. **Permissions:** Ensure the `storage/` directory is writable (`chmod -R 775 storage`).
-3. **Run Installer:** Visit the project URL in your browser (e.g., `http://localhost/zipply-paste/`).
+3. **Run Installer:** Visit the project URL in your browser (e.g., `http://localhost/swiffy-code/`).
 4. **Complete Setup:** The web installer will guide you through database configuration and admin account creation.
 
 ---
@@ -57,7 +57,7 @@ Zipply Paste is a **lightweight, self-hosted, multi-user Pastebin platform** bui
 ## 📂 Project Structure
 
 ```text
-zipply-paste/
+swiffy-code/
 ├── app/                # Application Core (MVC)
 │   ├── Controllers/    # Request Handlers
 │   ├── Core/           # Router, Database, Base Controller
@@ -81,4 +81,4 @@ This project is open-source software licensed under the **MIT License**. Created
 
 ---
 
-*“Simple, Fast, Secure Pasting.”* – **Zipply Paste**
+*“Simple, Fast, Secure Pasting.”* – **Swiffy Code**

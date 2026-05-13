@@ -14,10 +14,22 @@ abstract class Model
         $this->db = Database::getInstance();
     }
 
-    public function all()
+    public function all($limit = null, $offset = null)
     {
-        $stmt = $this->db->query("SELECT * FROM {$this->table}");
+        $sql = "SELECT * FROM {$this->table}";
+        if ($limit !== null) {
+            $sql .= " LIMIT " . (int)$limit;
+            if ($offset !== null) {
+                $sql .= " OFFSET " . (int)$offset;
+            }
+        }
+        $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
+    }
+
+    public function count()
+    {
+        return $this->db->query("SELECT COUNT(*) FROM {$this->table}")->fetchColumn();
     }
 
     public function find($id)

@@ -7,7 +7,7 @@ ob_start();
         <div class="text-center mb-8">
             <i data-lucide="settings" class="w-12 h-12 text-indigo-500 mx-auto mb-4 animate-spin-slow"></i>
             <h1 class="text-2xl font-bold">Installation</h1>
-            <p class="text-zinc-500 text-sm">Set up your Zipply Paste instance</p>
+            <p class="text-zinc-500 text-sm">Set up your Swiffy Code instance</p>
         </div>
 
         <form id="installForm" class="space-y-4">

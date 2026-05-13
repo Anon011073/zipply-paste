@@ -81,8 +81,62 @@ class AuthController extends Controller
 
     public function postForgotPassword()
     {
-        // Simple placeholder for reset logic
-        // In a full app, we'd generate a token and send an email
+        $email = $_POST['email'] ?? '';
+        $user = $this->userModel->findByEmail($email);
+
+        if ($user) {
+            $token = bin2hex(random_bytes(32));
+            $expiry = date('Y-m-d H:i:s', strtotime('+1 hour'));
+
+            $db = \App\Core\Database::getInstance();
+            try {
+                $db->exec("CREATE TABLE IF NOT EXISTS password_resets (email VARCHAR(255), token VARCHAR(255), expires_at DATETIME)");
+                $stmt = $db->prepare("INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)");
+                $stmt->execute([$email, $token, $expiry]);
+
+                $resetLink = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]" . \App\Core\Router::getBase() . "/reset-password?token=$token";
+                $body = "Click here to reset your password: <a href='$resetLink'>$resetLink</a>";
+
+                \App\Helpers\Mailer::send($email, "Password Reset - Swiffy Code", $body);
+            } catch (\Exception $e) {
+                error_log("Reset Error: " . $e->getMessage());
+            }
+        }
+
         $this->view('auth/forgot', ['title' => 'Reset Password', 'success' => true]);
+    }
+
+    public function resetPassword()
+    {
+        $token = $_GET['token'] ?? '';
+        $this->view('auth/reset', ['title' => 'Set New Password', 'token' => $token]);
+    }
+
+    public function postResetPassword()
+    {
+        $token = $_POST['token'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $confirm = $_POST['confirm_password'] ?? '';
+
+        if ($password !== $confirm) {
+            return $this->view('auth/reset', ['title' => 'Set New Password', 'token' => $token, 'error' => 'Passwords do not match']);
+        }
+
+        $db = \App\Core\Database::getInstance();
+        $stmt = $db->prepare("SELECT * FROM password_resets WHERE token = ? AND expires_at > CURRENT_TIMESTAMP LIMIT 1");
+        $stmt->execute([$token]);
+        $reset = $stmt->fetch();
+
+        if (!$reset) {
+            die("Invalid or expired token.");
+        }
+
+        $stmt = $db->prepare("UPDATE users SET password = ? WHERE email = ?");
+        $stmt->execute([password_hash($password, PASSWORD_DEFAULT), $reset['email']]);
+
+        $stmt = $db->prepare("DELETE FROM password_resets WHERE email = ?");
+        $stmt->execute([$reset['email']]);
+
+        $this->redirect('/login');
     }
 }

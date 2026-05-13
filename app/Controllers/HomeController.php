@@ -13,6 +13,20 @@ class HomeController extends Controller
             $this->redirect('/install');
         }
 
-        $this->view('home/index', ['title' => 'Welcome to Zipply Paste']);
+        $limit = 20;
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $offset = ($page - 1) * $limit;
+
+        $pasteModel = new \App\Models\Paste();
+        $recent = $pasteModel->getRecent($limit, $offset);
+        $total = $pasteModel->countPublic();
+        $totalPages = ceil($total / $limit);
+
+        $this->view('home/index', [
+            'title' => 'Welcome to Swiffy Code',
+            'recent' => $recent,
+            'page' => $page,
+            'totalPages' => $totalPages
+        ]);
     }
 }

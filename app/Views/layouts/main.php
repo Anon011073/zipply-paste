@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title ?? 'Zipply Paste'; ?></title>
+    <title><?php echo $title ?? 'Swiffy Code'; ?></title>
     <?php
         $base = str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']);
         if ($base === '/') $base = '';
@@ -37,8 +37,8 @@
         <div class="container mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-8">
                 <a href="<?php echo $base; ?>/" class="flex items-center gap-2 font-bold text-xl tracking-tight text-zinc-900 dark:text-white">
-                    <i data-lucide="layers" class="text-indigo-500 w-6 h-6"></i>
-                    <span>Zipply<span class="text-indigo-500">Paste</span></span>
+                    <i data-lucide="zap" class="text-indigo-500 w-6 h-6"></i>
+                    <span>Swiffy<span class="text-indigo-500">Code</span></span>
                 </a>
                 <div class="hidden md:flex items-center gap-6">
                     <a href="<?php echo $base; ?>/search" class="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-indigo-500 transition-colors">Discover</a>
@@ -80,7 +80,7 @@
 
     <footer class="border-t border-zinc-200 dark:border-zinc-800 py-8 bg-zinc-50 dark:bg-zinc-900/30">
         <div class="container mx-auto px-4 text-center text-zinc-500 text-sm">
-            &copy; <?php echo date('Y'); ?> Zipply Paste. All rights reserved.
+            &copy; <?php echo date('Y'); ?> Swiffy Code. All rights reserved.
         </div>
     </footer>
 

@@ -19,7 +19,7 @@
                 <i data-lucide="zap" class="text-indigo-500 w-8 h-8"></i>
                 <span>Swiffy<span class="text-indigo-500">Code</span></span>
             </a>
-            <div class="flex items-center gap-8">
+            <div class="flex items-center gap-8"> <a href="index.html" class="hidden sm:block text-sm font-medium text-zinc-400 hover:text-white transition-colors">Back to Portal</a>
                 <div class="relative group hidden sm:block">
                     <button class="flex items-center gap-1 text-sm font-medium text-zinc-400 group-hover:text-white transition-colors py-8">
                         Products <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
@@ -212,5 +212,5 @@
     <script>
         lucide.createIcons();
     </script>
-</body>
+<div id="lightbox" class="fixed inset-0 bg-black/95 z-[100] hidden items-center justify-center p-4 cursor-zoom-out" onclick="this.classList.add('hidden')"> <img id="lightbox-img" src="" class="max-w-full max-h-full rounded-xl shadow-2xl"> </div><script> document.querySelectorAll('#screenshots img').forEach(img => { img.classList.add('cursor-zoom-in'); img.onclick = (e) => { e.stopPropagation(); const lb = document.getElementById('lightbox'); const lbImg = document.getElementById('lightbox-img'); lbImg.src = img.src; lb.classList.remove('hidden'); lb.classList.add('flex'); }; }); </script></body>
 </html>

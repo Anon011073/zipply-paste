@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiffy.dev - High-Performance Self-Hosted Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #f4f4f5; }
+        .hero-gradient { background: radial-gradient(circle at top, #1e1b4b 0%, #09090b 100%); }
+        .card-blur { backdrop-filter: blur(16px); background-color: rgba(24, 24, 27, 0.4); }
+    </style>
+</head>
+<body class="selection:bg-indigo-500 selection:text-white">
+    <nav class="border-b border-zinc-800 bg-zinc-950/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 font-bold text-2xl tracking-tight">
+                <i data-lucide="zap" class="text-indigo-500 w-8 h-8"></i>
+                <span>Swiffy<span class="text-indigo-500">.dev</span></span>
+            </a>
+            <div class="flex items-center gap-8">
+                <a href="#suite" class="hidden sm:block text-sm font-medium text-zinc-400 hover:text-white transition-colors">The Suite</a>
+                <a href="https://github.com/user" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl text-sm font-bold transition-all shadow-lg shadow-indigo-500/20 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                    <span>Organization</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-gradient pt-32 pb-48 overflow-hidden relative">
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-indigo-500 rounded-full blur-[150px]"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500 rounded-full blur-[150px]"></div>
+        </div>
+        <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-widest mb-8">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                </span>
+                The Swiffy Suite is here
+            </div>
+            <h1 class="text-6xl md:text-9xl font-black mb-8 italic bg-gradient-to-r from-white via-indigo-200 to-white bg-clip-text text-transparent leading-tight tracking-tighter">
+                Elegance in<br>Automation.
+            </h1>
+            <p class="text-zinc-400 text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
+                A collection of professional, lightweight, and modern self-hosted tools designed to simplify your digital workflow.
+            </p>
+        </div>
+    </header>
+
+    <section id="suite" class="py-32 bg-zinc-950 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <h2 class="text-4xl md:text-5xl font-black italic text-white mb-4">Discover the Products</h2>
+                <p class="text-zinc-500">Each tool is crafted for performance, privacy, and ease of deployment.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Swiffy Code -->
+                <div class="group relative p-8 rounded-3xl border border-zinc-800 bg-zinc-900/50 hover:border-indigo-500/50 transition-all duration-500 shadow-2xl overflow-hidden">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="code" class="w-24 h-24 text-indigo-500"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-6 border border-indigo-500/20">
+                            <i data-lucide="code" class="text-indigo-500 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 italic">Swiffy Code</h3>
+                        <p class="text-zinc-500 leading-relaxed mb-8">The ultimate self-hosted pastebin. Feature-rich editor, syntax highlighting, and secure snippet sharing for teams and individuals.</p>
+                        <div class="flex items-center gap-4">
+                            <a href="code.html" class="text-white font-bold text-sm hover:text-indigo-400 transition-colors flex items-center gap-2">
+                                Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                            <a href="https://github.com/user/swiffy-code" target="_blank" class="text-zinc-500 hover:text-white transition-colors">
+                                <i data-lucide="github" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swiffy Blog -->
+                <div class="group relative p-8 rounded-3xl border border-zinc-800 bg-zinc-900/50 hover:border-orange-500/50 transition-all duration-500 shadow-2xl overflow-hidden">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="pen-tool" class="w-24 h-24 text-orange-500"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-6 border border-orange-500/20">
+                            <i data-lucide="pen-tool" class="text-orange-500 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 italic">Swiffy Blog</h3>
+                        <p class="text-zinc-500 leading-relaxed mb-8">A distraction-free blogging platform. Markdown-first writing, lightning-fast SEO, and modern typography for your stories.</p>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-white font-bold text-sm hover:text-orange-400 transition-colors flex items-center gap-2">
+                                Coming Soon <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swiffy Drive -->
+                <div class="group relative p-8 rounded-3xl border border-zinc-800 bg-zinc-900/50 hover:border-blue-500/50 transition-all duration-500 shadow-2xl overflow-hidden">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="hard-drive" class="w-24 h-24 text-blue-500"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 border border-blue-500/20">
+                            <i data-lucide="hard-drive" class="text-blue-500 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 italic">Swiffy Drive</h3>
+                        <p class="text-zinc-500 leading-relaxed mb-8">Personal cloud storage without the bloat. Fast file uploads, easy sharing, and complete control over your private data.</p>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-white font-bold text-sm hover:text-blue-400 transition-colors flex items-center gap-2">
+                                Coming Soon <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swiffy Explorer -->
+                <div class="group relative p-8 rounded-3xl border border-zinc-800 bg-zinc-900/50 hover:border-emerald-500/50 transition-all duration-500 shadow-2xl overflow-hidden">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="folder-search" class="w-24 h-24 text-emerald-500"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 border border-emerald-500/20">
+                            <i data-lucide="folder-search" class="text-emerald-500 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 italic">Swiffy Explorer</h3>
+                        <p class="text-zinc-500 leading-relaxed mb-8">A modern web-based file manager. Navigate your server files with a polished UI, built-in previews, and rapid search.</p>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-white font-bold text-sm hover:text-emerald-400 transition-colors flex items-center gap-2">
+                                Coming Soon <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swiffy Dash -->
+                <div class="group relative p-8 rounded-3xl border border-zinc-800 bg-zinc-900/50 hover:border-pink-500/50 transition-all duration-500 shadow-2xl overflow-hidden">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="layout-dashboard" class="w-24 h-24 text-pink-500"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-pink-500/10 rounded-2xl flex items-center justify-center mb-6 border border-pink-500/20">
+                            <i data-lucide="layout-dashboard" class="text-pink-500 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 italic">Swiffy Dash</h3>
+                        <p class="text-zinc-500 leading-relaxed mb-8">One dashboard to rule them all. Monitor your Swiffy apps, view stats, and manage system settings from a single unified view.</p>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-white font-bold text-sm hover:text-pink-400 transition-colors flex items-center gap-2">
+                                Coming Soon <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-zinc-900 py-16 bg-zinc-950">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+                <a href="#" class="flex items-center gap-2 font-bold text-xl tracking-tight">
+                    <i data-lucide="zap" class="text-indigo-500 w-6 h-6"></i>
+                    <span>Swiffy<span class="text-indigo-500">.dev</span></span>
+                </a>
+                <div class="flex gap-8 text-sm text-zinc-500">
+                    <a href="code.html" class="hover:text-white transition-colors">Swiffy Code</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="https://github.com/user" class="hover:text-white transition-colors">GitHub</a>
+                </div>
+            </div>
+            <div class="text-center text-zinc-600 text-xs">
+                <p>&copy; 2024 Swiffy.dev. All rights reserved. Professional tools for modern developers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
